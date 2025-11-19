@@ -3,6 +3,8 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const PDFDocument = require('pdfkit');
 const ExcelJS = require('exceljs');
+const path = require('path');
+const fs = require('fs');
 const Transaction = require('../models/Transaction');
 const Budget = require('../models/Budget');
 const Goal = require('../models/Goal');  
@@ -556,91 +558,103 @@ router.get('/pdf', authenticateToken, async (req, res) => {
     console.log('PDF data calculated:', { totalIncome, totalExpenses, netSavings });
 
     // Create PDF document
-    const doc = new PDFDocument({ margin: 50 });
+    const doc = new PDFDocument({ 
+      margin: 40,
+      size: 'LETTER',
+      bufferPages: true
+    });
     
     // Set response headers
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="MoneyVue-Report-${new Date().toISOString().split('T')[0]}.pdf"`);
+    res.setHeader('Content-Disposition', `attachment; filename="MONIVUE-Financial-Report-${new Date().toISOString().split('T')[0]}.pdf"`);
     
     // Pipe PDF to response
     doc.pipe(res);
 
     try {
-      // Create professional header with company branding
-      const pageWidth = 612; // Standard 8.5x11 page width in points
-      const centerX = pageWidth / 2;
+      const pageWidth = doc.page.width;
+      const pageHeight = doc.page.height;
+      const margin = 40;
+      const contentWidth = pageWidth - (margin * 2);
       
-      // Header background
-      doc.rect(0, 0, pageWidth, 120).fill('#1e3c72');
+      // ==================== HEADER ====================
+      // Gradient header background
+      doc.rect(0, 0, pageWidth, 140).fill('#1e3c72');
+      doc.rect(0, 0, pageWidth, 140).fillOpacity(0.1).fill('#2a5298');
+      doc.fillOpacity(1);
       
-      // Company logo area (placeholder - you can add actual logo later)
-      doc.circle(80, 60, 25).fill('#ffffff');
-      doc.fontSize(14).fillColor('#1e3c72').text('MV', 72, 55);
+      // Add Logo Image
+      const logoPath = path.join(__dirname, '../../frontend/src/assets/Finance_Logo.png');
+      if (fs.existsSync(logoPath)) {
+        doc.image(logoPath, 50, 40, { width: 60, height: 60 });
+      }
       
-      // Main title
-      doc.fontSize(28).fillColor('#ffffff').text('MoneyVue', 120, 35, { align: 'left' });
-      doc.fontSize(16).fillColor('#e8f4f8').text('Financial Report', 120, 65, { align: 'left' });
+      // Company Name and Title
+      doc.fontSize(32).fillColor('#ffffff').font('Helvetica-Bold').text('MONIVUE', 130, 45);
+      doc.fontSize(14).fillColor('#e8f4f8').font('Helvetica').text('Financial Report', 130, 80);
+      doc.fontSize(10).fillColor('#b8d4f1').text('Track. Save. Grow.', 130, 100);
       
-      // Header info box on the right
-      const headerBox = {
-        x: pageWidth - 200,
-        y: 25,
-        width: 170,
-        height: 70
-      };
+      // Info box on right side
+      const infoX = pageWidth - 220;
+      doc.roundedRect(infoX, 30, 180, 80, 5).lineWidth(1.5).strokeOpacity(0.3).stroke('#ffffff');
       
-      doc.rect(headerBox.x, headerBox.y, headerBox.width, headerBox.height)
-         .stroke('#ffffff')
-         .fillOpacity(0.1)
-         .fill('#ffffff');
+      doc.fontSize(9).fillColor('#ffffff').font('Helvetica-Bold');
+      doc.text('REPORT DETAILS', infoX + 15, 40, { width: 150 });
       
-      doc.fillOpacity(1).fillColor('#1e3c72').fontSize(10);
-      doc.text('Generated:', headerBox.x + 10, headerBox.y + 10);
+      doc.fontSize(8).fillColor('#e8f4f8').font('Helvetica');
+      doc.text('Generated:', infoX + 15, 58);
       doc.text(new Date().toLocaleDateString('en-US', { 
         year: 'numeric', 
-        month: 'long', 
+        month: 'short', 
         day: 'numeric' 
-      }), headerBox.x + 10, headerBox.y + 22);
+      }), infoX + 70, 58);
       
-      doc.text('Period:', headerBox.x + 10, headerBox.y + 40);
-      doc.text(getPeriodLabel(period), headerBox.x + 10, headerBox.y + 52);
+      doc.text('Period:', infoX + 15, 72);
+      doc.text(getPeriodLabel(period), infoX + 70, 72);
       
-      doc.text('User:', headerBox.x + 100, headerBox.y + 10);
-      doc.text(user.name || 'User', headerBox.x + 100, headerBox.y + 22);
-
-      let yPosition = 150;
-      doc.fillColor('#333333'); // Reset to dark text
-
-      // Executive Summary Section with background
-      doc.rect(50, yPosition - 15, pageWidth - 100, 120).fill('#f8f9ff').stroke('#e0e7ff');
+      doc.text('User:', infoX + 15, 86);
+      doc.text(user.name || 'User', infoX + 70, 86, { width: 95 });
       
-      doc.fontSize(20).fillColor('#1e3c72').text('📊 Executive Summary', 70, yPosition);
-      yPosition += 35;
-
-      // Create three columns for key metrics
-      const col1X = 70, col2X = 240, col3X = 410;
-      const colWidth = 150;
+      // ==================== SUMMARY SECTION ====================
+      let yPos = 170;
       
-      // Income box
-      doc.rect(col1X, yPosition, colWidth - 20, 60).fill('#e6f7ff').stroke('#40a9ff');
-      doc.fontSize(12).fillColor('#0050b3').text('💰 Total Income', col1X + 10, yPosition + 10);
-      doc.fontSize(18).fillColor('#0050b3').text(`$${totalIncome.toLocaleString()}`, col1X + 10, yPosition + 30);
+      // Section title with underline
+      doc.fontSize(18).fillColor('#1e3c72').font('Helvetica-Bold');
+      doc.text('Financial Summary', margin, yPos);
+      doc.moveTo(margin, yPos + 22).lineTo(pageWidth - margin, yPos + 22).lineWidth(2).strokeOpacity(0.3).stroke('#1e3c72');
+      yPos += 40;
       
-      // Expenses box
-      doc.rect(col2X, yPosition, colWidth - 20, 60).fill('#fff2e6').stroke('#ff7a45');
-      doc.fontSize(12).fillColor('#d46b08').text('💸 Total Expenses', col2X + 10, yPosition + 10);
-      doc.fontSize(18).fillColor('#d46b08').text(`$${totalExpenses.toLocaleString()}`, col2X + 10, yPosition + 30);
+      // Three metric cards
+      const cardWidth = (contentWidth - 40) / 3;
+      const cardHeight = 75;
+      const cardGap = 20;
       
-      // Net Savings box
+      // Income Card
+      const card1X = margin;
+      doc.roundedRect(card1X, yPos, cardWidth, cardHeight, 8).fill('#e6f7ff');
+      doc.roundedRect(card1X, yPos, cardWidth, cardHeight, 8).lineWidth(2).stroke('#40a9ff');
+      doc.fontSize(11).fillColor('#0050b3').font('Helvetica-Bold').text('TOTAL INCOME', card1X + 15, yPos + 15, { width: cardWidth - 30 });
+      doc.fontSize(24).fillColor('#0050b3').font('Helvetica-Bold').text(`$${totalIncome.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, card1X + 15, yPos + 40, { width: cardWidth - 30 });
+      
+      // Expenses Card
+      const card2X = card1X + cardWidth + cardGap;
+      doc.roundedRect(card2X, yPos, cardWidth, cardHeight, 8).fill('#fff2e6');
+      doc.roundedRect(card2X, yPos, cardWidth, cardHeight, 8).lineWidth(2).stroke('#ff7a45');
+      doc.fontSize(11).fillColor('#d46b08').font('Helvetica-Bold').text('TOTAL EXPENSES', card2X + 15, yPos + 15, { width: cardWidth - 30 });
+      doc.fontSize(24).fillColor('#d46b08').font('Helvetica-Bold').text(`$${totalExpenses.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, card2X + 15, yPos + 40, { width: cardWidth - 30 });
+      
+      // Savings Card
+      const card3X = card2X + cardWidth + cardGap;
       const savingsColor = netSavings >= 0 ? '#52c41a' : '#ff4d4f';
-      const savingsIcon = netSavings >= 0 ? '💚' : '⚠️';
-      doc.rect(col3X, yPosition, colWidth - 20, 60).fill(netSavings >= 0 ? '#f6ffed' : '#fff2f0').stroke(savingsColor);
-      doc.fontSize(12).fillColor(savingsColor).text(`${savingsIcon} Net Savings`, col3X + 10, yPosition + 10);
-      doc.fontSize(18).fillColor(savingsColor).text(`$${netSavings.toLocaleString()}`, col3X + 10, yPosition + 30);
+      const savingsBg = netSavings >= 0 ? '#f6ffed' : '#fff2f0';
+      doc.roundedRect(card3X, yPos, cardWidth, cardHeight, 8).fill(savingsBg);
+      doc.roundedRect(card3X, yPos, cardWidth, cardHeight, 8).lineWidth(2).stroke(savingsColor);
+      doc.fontSize(11).fillColor(savingsColor).font('Helvetica-Bold').text('NET SAVINGS', card3X + 15, yPos + 15, { width: cardWidth - 30 });
+      doc.fontSize(24).fillColor(savingsColor).font('Helvetica-Bold').text(`$${netSavings.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, card3X + 15, yPos + 40, { width: cardWidth - 30 });
       
-      yPosition += 90;
+      yPos += cardHeight + 40;
 
-      // Category Analysis Section
+      // ==================== CATEGORY BREAKDOWN ====================
       const categoryMap = {};
       transactions.filter(t => t.type === 'expense' && t.category && t.amount).forEach(t => {
         categoryMap[t.category] = (categoryMap[t.category] || 0) + t.amount;
@@ -651,45 +665,63 @@ router.get('/pdf', authenticateToken, async (req, res) => {
         .slice(0, 8);
 
       if (topCategories.length > 0) {
-        doc.fontSize(18).fillColor('#1e3c72').text('📈 Top Expense Categories', 50, yPosition);
-        yPosition += 35;
+        // Section title
+        doc.fontSize(18).fillColor('#1e3c72').font('Helvetica-Bold').text('Expense Breakdown by Category', margin, yPos);
+        doc.moveTo(margin, yPos + 22).lineTo(pageWidth - margin, yPos + 22).lineWidth(2).strokeOpacity(0.3).stroke('#1e3c72');
+        yPos += 40;
 
-        // Table header with background
-        doc.rect(50, yPosition - 5, pageWidth - 100, 25).fill('#f0f0f0').stroke('#d9d9d9');
-        doc.fontSize(12).fillColor('#333333');
-        doc.text('Category', 70, yPosition + 5);
-        doc.text('Amount', 280, yPosition + 5);
-        doc.text('Percentage', 400, yPosition + 5);
-        doc.text('Visual', 480, yPosition + 5);
-        yPosition += 30;
+        // Table header
+        doc.roundedRect(margin, yPos, contentWidth, 30, 5).fill('#f5f7fa');
+        doc.fontSize(11).fillColor('#1e3c72').font('Helvetica-Bold');
+        doc.text('CATEGORY', margin + 20, yPos + 10, { width: 180 });
+        doc.text('AMOUNT', margin + 210, yPos + 10, { width: 100 });
+        doc.text('PERCENTAGE', margin + 320, yPos + 10, { width: 80 });
+        doc.text('CHART', margin + 410, yPos + 10, { width: 100 });
+        yPos += 35;
 
         topCategories.forEach(([category, amount], index) => {
           const percentage = totalExpenses > 0 ? ((amount / totalExpenses) * 100) : 0;
-          const isEven = index % 2 === 0;
           
-          // Alternating row colors
-          if (isEven) {
-            doc.rect(50, yPosition - 5, pageWidth - 100, 20).fill('#fafafa');
+          // Row background
+          if (index % 2 === 0) {
+            doc.rect(margin, yPos - 5, contentWidth, 28).fill('#fafbfc');
           }
           
-          doc.fontSize(11).fillColor('#333333');
-          doc.text(category || 'Unknown', 70, yPosition);
-          doc.text(`$${amount.toLocaleString()}`, 280, yPosition);
-          doc.text(`${percentage.toFixed(1)}%`, 400, yPosition);
+          // Category name
+          doc.fontSize(10).fillColor('#333333').font('Helvetica');
+          doc.text(category || 'Unknown', margin + 20, yPos + 5, { width: 180 });
           
-          // Visual bar chart
-          const barWidth = Math.max(2, (percentage / 100) * 80);
-          doc.rect(480, yPosition + 3, barWidth, 8).fill('#40a9ff');
+          // Amount
+          doc.fontSize(10).fillColor('#d46b08').font('Helvetica-Bold');
+          doc.text(`$${amount.toLocaleString('en-US', {minimumFractionDigits: 2})}`, margin + 210, yPos + 5, { width: 100 });
           
-          yPosition += 20;
+          // Percentage
+          doc.fontSize(10).fillColor('#666666').font('Helvetica');
+          doc.text(`${percentage.toFixed(1)}%`, margin + 320, yPos + 5, { width: 80 });
+          
+          // Progress bar
+          const maxBarWidth = 120;
+          const barWidth = Math.max(3, (percentage / 100) * maxBarWidth);
+          doc.roundedRect(margin + 410, yPos + 6, maxBarWidth, 12, 3).fill('#e6f7ff');
+          doc.roundedRect(margin + 410, yPos + 6, barWidth, 12, 3).fill('#40a9ff');
+          
+          yPos += 28;
         });
-        yPosition += 20;
+        yPos += 30;
       }
 
-      // Budget Performance Section
+      // ==================== BUDGET PERFORMANCE ====================
       if (budgets.length > 0) {
-        doc.fontSize(18).fillColor('#1e3c72').text('🎯 Budget Performance', 50, yPosition);
-        yPosition += 35;
+        // Check if we need a new page
+        if (yPos > pageHeight - 250) {
+          doc.addPage();
+          yPos = 60;
+        }
+        
+        // Section title
+        doc.fontSize(18).fillColor('#1e3c72').font('Helvetica-Bold').text('Budget Performance', margin, yPos);
+        doc.moveTo(margin, yPos + 22).lineTo(pageWidth - margin, yPos + 22).lineWidth(2).strokeOpacity(0.3).stroke('#1e3c72');
+        yPos += 40;
 
         budgets.slice(0, 6).forEach(budget => {
           let spent = 0;
@@ -712,43 +744,72 @@ router.get('/pdf', authenticateToken, async (req, res) => {
           }
           
           const percentage = budgeted > 0 ? (spent / budgeted * 100) : 0;
-          const status = percentage <= 100 ? 'On Track' : 'Over Budget';
-          const statusColor = percentage <= 100 ? '#52c41a' : '#ff4d4f';
-          const statusIcon = percentage <= 100 ? '✅' : '⚠️';
+          const status = percentage <= 80 ? 'On Track' : percentage <= 100 ? 'Near Limit' : 'Over Budget';
+          const statusColor = percentage <= 80 ? '#52c41a' : percentage <= 100 ? '#faad14' : '#ff4d4f';
+          const statusBg = percentage <= 80 ? '#f6ffed' : percentage <= 100 ? '#fffbe6' : '#fff2f0';
           
-          // Budget item container
-          doc.rect(50, yPosition - 5, pageWidth - 100, 45).fill('#fafbfc').stroke('#e8e8e8');
+          // Budget card
+          doc.roundedRect(margin, yPos, contentWidth, 65, 8).fill('#ffffff');
+          doc.roundedRect(margin, yPos, contentWidth, 65, 8).lineWidth(1).stroke('#e8e8e8');
           
-          doc.fontSize(13).fillColor('#333333').text(`${statusIcon} ${categoryName}`, 70, yPosition + 5);
-          doc.fontSize(10).fillColor('#666666');
-          doc.text(`Budgeted: $${budgeted.toLocaleString()}`, 70, yPosition + 20);
-          doc.text(`Spent: $${spent.toLocaleString()}`, 200, yPosition + 20);
-          doc.text(`Status: ${status}`, 330, yPosition + 20);
-          doc.fillColor(statusColor).text(`${percentage.toFixed(1)}%`, 450, yPosition + 20);
+          // Category name
+          doc.fontSize(12).fillColor('#1e3c72').font('Helvetica-Bold').text(categoryName, margin + 20, yPos + 12);
+          
+          // Budget amounts in a row
+          doc.fontSize(10).fillColor('#666666').font('Helvetica');
+          doc.text('Budgeted:', margin + 20, yPos + 32);
+          doc.fillColor('#0050b3').font('Helvetica-Bold').text(`$${budgeted.toLocaleString('en-US', {minimumFractionDigits: 2})}`, margin + 90, yPos + 32);
+          
+          doc.fillColor('#666666').font('Helvetica').text('Spent:', margin + 200, yPos + 32);
+          doc.fillColor('#d46b08').font('Helvetica-Bold').text(`$${spent.toLocaleString('en-US', {minimumFractionDigits: 2})}`, margin + 250, yPos + 32);
+          
+          // Status badge
+          const badgeX = pageWidth - margin - 120;
+          doc.roundedRect(badgeX, yPos + 10, 100, 22, 4).fill(statusBg);
+          doc.roundedRect(badgeX, yPos + 10, 100, 22, 4).lineWidth(1).stroke(statusColor);
+          doc.fontSize(9).fillColor(statusColor).font('Helvetica-Bold').text(status, badgeX, yPos + 16, { width: 100, align: 'center' });
           
           // Progress bar
-          const progressBarWidth = 100;
+          const progressBarWidth = contentWidth - 40;
           const filledWidth = Math.min(progressBarWidth, (percentage / 100) * progressBarWidth);
-          doc.rect(70, yPosition + 32, progressBarWidth, 6).fill('#f0f0f0');
-          doc.rect(70, yPosition + 32, filledWidth, 6).fill(statusColor);
+          doc.roundedRect(margin + 20, yPos + 48, progressBarWidth, 10, 3).fill('#f0f2f5');
           
-          yPosition += 50;
+          // Color gradient based on percentage
+          let barColor = '#52c41a';
+          if (percentage > 100) barColor = '#ff4d4f';
+          else if (percentage > 80) barColor = '#faad14';
+          
+          doc.roundedRect(margin + 20, yPos + 48, filledWidth, 10, 3).fill(barColor);
+          
+          // Percentage text on bar
+          doc.fontSize(8).fillColor('#ffffff').font('Helvetica-Bold');
+          if (filledWidth > 30) {
+            doc.text(`${percentage.toFixed(0)}%`, margin + 20, yPos + 50, { width: filledWidth, align: 'center' });
+          }
+          
+          yPos += 75;
         });
+        yPos += 20;
       }
 
-      // Add new page if needed for footer
-      if (yPosition > 700) {
-        doc.addPage();
-        yPosition = 50;
+      // ==================== FOOTER ====================
+      // Add professional footer on each page
+      const range = doc.bufferedPageRange();
+      for (let i = range.start; i < range.start + range.count; i++) {
+        doc.switchToPage(i);
+        
+        // Footer background
+        doc.rect(0, pageHeight - 60, pageWidth, 60).fill('#f8f9fa');
+        doc.moveTo(0, pageHeight - 60).lineTo(pageWidth, pageHeight - 60).lineWidth(1).strokeOpacity(0.2).stroke('#1e3c72');
+        
+        // Footer content
+        doc.fontSize(8).fillColor('#666666').font('Helvetica');
+        doc.text('MONIVUE Financial Tracker - Confidential Report', margin, pageHeight - 45);
+        doc.text(`Report ID: MV-${Date.now()}`, margin, pageHeight - 30);
+        
+        doc.text(`Page ${i + 1} of ${range.count}`, pageWidth - margin - 80, pageHeight - 45, { width: 80, align: 'right' });
+        doc.text(new Date().toLocaleDateString('en-US'), pageWidth - margin - 80, pageHeight - 30, { width: 80, align: 'right' });
       }
-
-      // Professional Footer
-      doc.rect(0, 750, pageWidth, 50).fill('#f8f9fa');
-      doc.fontSize(9).fillColor('#666666');
-      doc.text('MoneyVue Financial Tracker - Confidential Report', 50, 765);
-      doc.text(`Report ID: MV-${Date.now()}`, 50, 780);
-      doc.text(`Generated: ${new Date().toISOString()}`, pageWidth - 200, 765);
-      doc.text('Page 1 of 1', pageWidth - 200, 780);
 
       // End the document
       doc.end();
@@ -773,6 +834,7 @@ router.get('/excel', authenticateToken, async (req, res) => {
   try {
     console.log('Excel generation requested by user:', req.user.id);
     const { period = '30d' } = req.query;
+    const dateRange = period;
     const userId = req.user.id;
     
     // Get data for the specified period
@@ -811,14 +873,14 @@ router.get('/excel', authenticateToken, async (req, res) => {
 
     // Create workbook
     const workbook = new ExcelJS.Workbook();
-    workbook.creator = 'MoneyVue Finance Tracker';
+    workbook.creator = 'MONIVUE Finance Tracker';
     workbook.created = new Date();
 
     // Summary Sheet
     const summarySheet = workbook.addWorksheet('Financial Summary');
-    summarySheet.addRow(['MoneyVue Financial Report']);
+    summarySheet.addRow(['MONIVUE Financial Report']);
     summarySheet.addRow(['Generated:', new Date().toLocaleDateString()]);
-    summarySheet.addRow(['Period:', getPeriodLabel(dateRange)]);
+    summarySheet.addRow(['Period:', getPeriodLabel(period)]);
     summarySheet.addRow(['User:', user?.name || 'User']);
     summarySheet.addRow([]);
     
@@ -913,8 +975,10 @@ router.get('/excel', authenticateToken, async (req, res) => {
     const buffer = await workbook.xlsx.writeBuffer();
     
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', `attachment; filename="MoneyVue-Report-${new Date().toISOString().split('T')[0]}.xlsx"`);
+    res.setHeader('Content-Disposition', `attachment; filename="MONIVUE-Report-${new Date().toISOString().split('T')[0]}.xlsx"`);
     res.send(buffer);
+    
+    console.log('Excel report generated successfully');
 
   } catch (error) {
     console.error('Error generating Excel:', error);

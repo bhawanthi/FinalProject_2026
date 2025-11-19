@@ -652,6 +652,11 @@
   transition: all 0.3s ease;
 }
 
+/* Ensure text inside white cards is dark and readable */
+.insight-card {
+  color: #0f172a; /* deep navy */
+}
+
 .insight-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
@@ -684,18 +689,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #ffffff;
   text-align: center;
 }
 
 .chart-value {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .chart-label {
-  font-size: 0.8rem;
-  opacity: 0.9;
+  font-size: 0.9rem;
+  opacity: 0.95;
+  color: #6b7280;
 }
 
 .spending-categories {
@@ -724,13 +731,39 @@
 
 .category-name {
   flex: 1;
-  color: #4b5563;
-  font-weight: 500;
+  color: #1f2937; /* darker for better contrast */
+  font-weight: 600;
+  text-shadow: none;
 }
 
 .category-amount {
-  font-weight: 600;
-  color: #1e293b;
+  font-weight: 700;
+  color: #0f172a; /* deep navy for readability */
+  text-shadow: none;
+}
+
+/* Strong overrides for spending overview labels (fix faint/white text) */
+.spending-overview .category-name,
+.spending-overview .category-amount,
+.spending-overview .category-item {
+  color: #0f172a !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.spending-overview .category-name {
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+}
+
+.spending-overview .category-amount {
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Ensure spending card inner text is dark on light background */
+.insight-card * {
+  color: inherit;
 }
 
 /* Market Trends */

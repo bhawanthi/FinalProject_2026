@@ -8,6 +8,7 @@ import Transactions from './components/Transactions';
 import Budget from './components/Budget';
 import Goals from './components/Goals';
 import Reports from './components/Reports';
+import Chatbot from './components/Chatbot';
 import { isAuthenticated } from './utils/auth';
 import './styles/App.css';
 
@@ -86,6 +87,9 @@ function App() {
           />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
+        
+        {/* Chatbot - Available on all pages when authenticated */}
+        {userAuthenticated && <Chatbot />}
       </div>
     </Router>
   );

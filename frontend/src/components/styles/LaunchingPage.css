@@ -27,43 +27,64 @@
 
 .logo-container {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
+  transform: scale(1);
 }
 
 .logo-glow {
   position: relative;
   display: inline-block;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  box-shadow: 
-    0 0 30px rgba(255, 255, 255, 0.2),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  animation: glowPulse 2s ease-in-out infinite alternate;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transform-style: preserve-3d;
 }
 
 .logo-glow::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(224, 231, 255, 0.3), rgba(255, 255, 255, 0.3));
-  border-radius: 22px;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.5), 
+    rgba(224, 231, 255, 0.5), 
+    rgba(147, 197, 253, 0.5),
+    rgba(255, 255, 255, 0.5));
+  border-radius: 33px;
   z-index: -1;
-  animation: borderGlow 3s ease-in-out infinite;
+  animation: borderGlow 3s ease-in-out infinite, rotate 10s linear infinite;
+}
+
+.logo-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
 }
 
 .logo-image {
-  width: 80px;
-  height: 80px;
+  width: 2000px;
+  height: auto;
+  max-width: 95vw;
   object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.3));
-  border-radius: 50%;
+  filter: brightness(1.4)
+          contrast(1.2)
+          saturate(1.3)
+          drop-shadow(0 25px 60px rgba(255, 255, 255, 0.9))
+          drop-shadow(0 0 100px rgba(255, 215, 0, 0.7))
+          drop-shadow(0 0 120px rgba(255, 255, 255, 0.6));
+  animation: logoFloat 3s ease-in-out infinite, logoPulse 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
 }
 
 .brand-text {
@@ -157,13 +178,15 @@
 @keyframes glowPulse {
   0% {
     box-shadow: 
-      0 0 20px rgba(255, 255, 255, 0.15),
-      inset 0 0 15px rgba(255, 255, 255, 0.1);
+      0 0 40px rgba(255, 255, 255, 0.3),
+      0 0 80px rgba(224, 231, 255, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.15);
   }
   100% {
     box-shadow: 
-      0 0 40px rgba(255, 255, 255, 0.25),
-      inset 0 0 25px rgba(255, 255, 255, 0.15);
+      0 0 60px rgba(255, 255, 255, 0.5),
+      0 0 120px rgba(224, 231, 255, 0.4),
+      inset 0 0 40px rgba(255, 255, 255, 0.25);
   }
 }
 
@@ -172,7 +195,51 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.7;
+    opacity: 0.6;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.03);
+  }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    filter: brightness(1.4) contrast(1.2) saturate(1.3)
+            drop-shadow(0 25px 60px rgba(255, 255, 255, 0.9))
+            drop-shadow(0 0 100px rgba(255, 215, 0, 0.7))
+            drop-shadow(0 0 120px rgba(255, 255, 255, 0.6));
+  }
+  50% {
+    filter: brightness(1.5) contrast(1.25) saturate(1.4)
+            drop-shadow(0 30px 70px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 120px rgba(255, 215, 0, 0.9))
+            drop-shadow(0 0 140px rgba(255, 255, 255, 0.8));
   }
 }
 
@@ -213,12 +280,8 @@
   }
   
   .logo-image {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .logo-glow {
-    padding: 1.5rem;
+    width: 700px;
+    max-width: 90vw;
   }
 }
 
@@ -232,11 +295,7 @@
   }
   
   .logo-image {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .logo-glow {
-    padding: 1.2rem;
+    width: 500px;
+    max-width: 85vw;
   }
 }

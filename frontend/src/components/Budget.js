@@ -220,6 +220,23 @@ const Budget = () => {
     }
   };
 
+  const handleEditBudget = (budget) => {
+    // Open edit modal with budget data
+    setFormData({
+      name: budget.name,
+      category: budget.category,
+      amount: budget.amount.toString(),
+      period: budget.period,
+      description: budget.description || ''
+    });
+    setShowCreateModal(true);
+  };
+
+  const handleViewAnalytics = (budget) => {
+    // Show budget analytics or navigate to detailed view
+    alert(`Analytics for ${budget.name}\n\nSpent: $${(budget.spent || 0).toFixed(2)}\nBudget: $${budget.amount.toFixed(2)}\nRemaining: $${(budget.amount - (budget.spent || 0)).toFixed(2)}\nUsage: ${Math.round(getBudgetProgressWidth(budget))}%`);
+  };
+
   const getBudgetProgressWidth = (budget) => {
     if (!budget.spent || budget.amount === 0) return 0;
     return Math.min((budget.spent / budget.amount) * 100, 100);
@@ -418,15 +435,17 @@ const Budget = () => {
                 <div className="goal-actions">
                   <button 
                     className="action-btn edit"
+                    onClick={() => handleEditBudget(budget)}
                     title="Edit Budget"
                   >
-                    �
+                    💎
                   </button>
                   <button 
                     className="action-btn analytics"
+                    onClick={() => handleViewAnalytics(budget)}
                     title="View Analytics"
                   >
-                    �
+                    💰
                   </button>
                   <button 
                     className="action-btn delete"
