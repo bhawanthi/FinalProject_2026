@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUserData, clearAuthData } from '../utils/auth';
+import { getUserData, clearAuthData, formatCurrency } from '../utils/auth';
 import TransactionModal from './TransactionModal';
 import './styles/Goals.css';
 import MoneyVueLogo from '../assets/Finance_Logo.png';
@@ -25,7 +25,8 @@ const Transactions = () => {
   const [editFormData, setEditFormData] = useState({
     name: '',
     email: '',
-    monthlySalary: ''
+    monthlySalary: '',
+    currency: 'USD'
   });
   const navigate = useNavigate();
 
@@ -99,7 +100,8 @@ const Transactions = () => {
       setEditFormData({
         name: userData.name || '',
         email: userData.email || '',
-        monthlySalary: userData.monthlySalary || ''
+        monthlySalary: userData.monthlySalary || '',
+        currency: userData.currency || 'USD'
       });
     }
 
@@ -204,13 +206,6 @@ const Transactions = () => {
         console.error('Error deleting transaction:', error);
       }
     }
-  };
-
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(amount);
   };
 
   const formatDate = (date) => {
@@ -608,6 +603,49 @@ const Transactions = () => {
                   step="0.01"
                   min="0"
                 />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="currency">💱 Preferred Currency</label>
+                <select
+                  id="currency"
+                  name="currency"
+                  value={editFormData.currency}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="USD">🇺🇸 USD - US Dollar</option>
+                  <option value="EUR">🇪🇺 EUR - Euro</option>
+                  <option value="GBP">🇬🇧 GBP - British Pound</option>
+                  <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                  <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                  <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                  <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+                  <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+                  <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+                  <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+                  <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+                  <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+                  <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+                  <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
+                  <option value="KRW">🇰🇷 KRW - South Korean Won</option>
+                  <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
+                  <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
+                  <option value="DKK">🇩🇰 DKK - Danish Krone</option>
+                  <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
+                  <option value="THB">🇹🇭 THB - Thai Baht</option>
+                  <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
+                  <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+                  <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
+                  <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
+                  <option value="RUB">🇷🇺 RUB - Russian Ruble</option>
+                  <option value="AED">🇦🇪 AED - UAE Dirham</option>
+                  <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
+                  <option value="EGP">🇪🇬 EGP - Egyptian Pound</option>
+                  <option value="NGN">🇳🇬 NGN - Nigerian Naira</option>
+                  <option value="KES">🇰🇪 KES - Kenyan Shilling</option>
+                  <option value="LKR">🇱🇰 LKR - Sri Lankan Rupee</option>
+                </select>
               </div>
               
               <div className="form-actions">

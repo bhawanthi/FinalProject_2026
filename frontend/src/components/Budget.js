@@ -23,7 +23,8 @@ const Budget = () => {
   const [editFormData, setEditFormData] = useState({
     name: '',
     email: '',
-    monthlySalary: ''
+    monthlySalary: '',
+    currency: 'USD'
   });
   const navigate = useNavigate();
 
@@ -71,7 +72,8 @@ const Budget = () => {
       setEditFormData({
         name: userData.name || '',
         email: userData.email || '',
-        monthlySalary: userData.monthlySalary || ''
+        monthlySalary: userData.monthlySalary || '',
+        currency: userData.currency || 'USD'
       });
     }
 
@@ -234,7 +236,7 @@ const Budget = () => {
 
   const handleViewAnalytics = (budget) => {
     // Show budget analytics or navigate to detailed view
-    alert(`Analytics for ${budget.name}\n\nSpent: $${(budget.spent || 0).toFixed(2)}\nBudget: $${budget.amount.toFixed(2)}\nRemaining: $${(budget.amount - (budget.spent || 0)).toFixed(2)}\nUsage: ${Math.round(getBudgetProgressWidth(budget))}%`);
+    alert(`Analytics for ${budget.name}\n\nSpent: ${formatCurrency(budget.spent || 0)}\nBudget: ${formatCurrency(budget.amount)}\nRemaining: ${formatCurrency(budget.amount - (budget.spent || 0))}\nUsage: ${Math.round(getBudgetProgressWidth(budget))}%`);
   };
 
   const getBudgetProgressWidth = (budget) => {
@@ -385,7 +387,7 @@ const Budget = () => {
             <div className="overview-content">
               <div className="overview-label">Total Allocated</div>
               <div className="overview-value">
-                ${budgets.reduce((sum, budget) => sum + budget.amount, 0).toFixed(2)}
+                {formatCurrency(budgets.reduce((sum, budget) => sum + budget.amount, 0))}
               </div>
             </div>
           </div>
@@ -459,10 +461,10 @@ const Budget = () => {
 
               <div className="goal-amount">
                 <span className="current-amount">
-                  ${(budget.spent || 0).toFixed(2)}
+                  {formatCurrency(budget.spent || 0)}
                 </span>
                 <span className="target-amount">
-                  / ${budget.amount.toFixed(2)}
+                  / {formatCurrency(budget.amount)}
                 </span>
               </div>
 
@@ -491,7 +493,7 @@ const Budget = () => {
 
               <div className="goal-remaining">
                 <span className={`remaining-amount ${getBudgetStatus(budget)}`}>
-                  ${(budget.amount - (budget.spent || 0)).toFixed(2)} remaining
+                  {formatCurrency(budget.amount - (budget.spent || 0))} remaining
                 </span>
               </div>
 
@@ -650,6 +652,49 @@ const Budget = () => {
                   step="0.01"
                   min="0"
                 />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="currency">💱 Preferred Currency</label>
+                <select
+                  id="currency"
+                  name="currency"
+                  value={editFormData.currency}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="USD">🇺🇸 USD - US Dollar</option>
+                  <option value="EUR">🇪🇺 EUR - Euro</option>
+                  <option value="GBP">🇬🇧 GBP - British Pound</option>
+                  <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                  <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                  <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                  <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+                  <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+                  <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+                  <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+                  <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+                  <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+                  <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+                  <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
+                  <option value="KRW">🇰🇷 KRW - South Korean Won</option>
+                  <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
+                  <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
+                  <option value="DKK">🇩🇰 DKK - Danish Krone</option>
+                  <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
+                  <option value="THB">🇹🇭 THB - Thai Baht</option>
+                  <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
+                  <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+                  <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
+                  <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
+                  <option value="RUB">🇷🇺 RUB - Russian Ruble</option>
+                  <option value="AED">🇦🇪 AED - UAE Dirham</option>
+                  <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
+                  <option value="EGP">🇪🇬 EGP - Egyptian Pound</option>
+                  <option value="NGN">🇳🇬 NGN - Nigerian Naira</option>
+                  <option value="KES">🇰🇪 KES - Kenyan Shilling</option>
+                  <option value="LKR">🇱🇰 LKR - Sri Lankan Rupee</option>
+                </select>
               </div>
               
               <div className="form-actions">

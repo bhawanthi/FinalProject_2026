@@ -23,6 +23,7 @@ const Home = () => {
     name: '',
     email: '',
     monthlySalary: '',
+    currency: 'USD',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
@@ -44,6 +45,7 @@ const Home = () => {
       name: user?.name || '',
       email: user?.email || '',
       monthlySalary: user?.monthlySalary || '',
+      currency: user?.currency || 'USD',
       currentPassword: '',
       newPassword: '',
       confirmPassword: ''
@@ -58,6 +60,7 @@ const Home = () => {
         name: userData.name || '',
         email: userData.email || '',
         monthlySalary: userData.monthlySalary || '',
+        currency: userData.currency || 'USD',
         currentPassword: '',
         newPassword: '',
         confirmPassword: ''
@@ -411,6 +414,7 @@ const Home = () => {
           name: updatedUser.user.name || '',
           email: updatedUser.user.email || '',
           monthlySalary: updatedUser.user.monthlySalary || '',
+          currency: updatedUser.user.currency || 'USD',
           currentPassword: '',
           newPassword: '',
           confirmPassword: ''
@@ -601,7 +605,7 @@ const Home = () => {
               <div className="metric-icon">🎯</div>
               <div className="metric-info">
                 <h3>Savings Goal</h3>
-                <span className="metric-value">$0.00</span>
+                <span className="metric-value">{formatCurrency(0)}</span>
                 <span className="metric-change neutral">Set your goal</span>
               </div>
             </div>
@@ -701,7 +705,7 @@ const Home = () => {
                         <div className="goal-header">
                           <span className="goal-name">{goal.title}</span>
                           <span className="goal-target">
-                            ${(goal.currentAmount || 0).toLocaleString()} / ${goal.targetAmount.toLocaleString()}
+                            {formatCurrency(goal.currentAmount || 0)} / {formatCurrency(goal.targetAmount)}
                           </span>
                         </div>
                         <div className="goal-progress">
@@ -837,6 +841,49 @@ const Home = () => {
                   step="0.01"
                   min="0"
                 />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="currency">💱 Preferred Currency</label>
+                <select
+                  id="currency"
+                  name="currency"
+                  value={editFormData.currency}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="USD">🇺🇸 USD - US Dollar</option>
+                  <option value="EUR">🇪🇺 EUR - Euro</option>
+                  <option value="GBP">🇬🇧 GBP - British Pound</option>
+                  <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                  <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                  <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                  <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+                  <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+                  <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+                  <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+                  <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+                  <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+                  <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+                  <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
+                  <option value="KRW">🇰🇷 KRW - South Korean Won</option>
+                  <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
+                  <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
+                  <option value="DKK">🇩🇰 DKK - Danish Krone</option>
+                  <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
+                  <option value="THB">🇹🇭 THB - Thai Baht</option>
+                  <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
+                  <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+                  <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
+                  <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
+                  <option value="RUB">🇷🇺 RUB - Russian Ruble</option>
+                  <option value="AED">🇦🇪 AED - UAE Dirham</option>
+                  <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
+                  <option value="EGP">🇪🇬 EGP - Egyptian Pound</option>
+                  <option value="NGN">🇳🇬 NGN - Nigerian Naira</option>
+                  <option value="KES">🇰🇪 KES - Kenyan Shilling</option>
+                  <option value="LKR">🇱🇰 LKR - Sri Lankan Rupee</option>
+                </select>
               </div>
 
               <div className="password-section">

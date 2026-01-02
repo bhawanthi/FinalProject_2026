@@ -12,6 +12,7 @@ const Register = () => {
     age: '',
     jobRole: '',
     monthlySalary: '',
+    currency: 'USD',
     password: '',
     confirmPassword: ''
   });
@@ -19,7 +20,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { name, email, age, jobRole, monthlySalary, password, confirmPassword } = formData;
+  const { name, email, age, jobRole, monthlySalary, currency, password, confirmPassword } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,33 +31,22 @@ const Register = () => {
     setLoading(true);
     setError('');
 
-    // Validate form
-    if (!validateEmail(email)) {
-      setError('Please enter a valid email address');
-      setLoading(false);
-      return;
-    }
+    if (!validateEmail(email)) { setError('Please enter a valid email address'); setLoading(false); return; }
+    if (!validatePassword(password)) { setError('Password must be at least 6 characters long'); setLoading(false); return; }
+    if (password !== confirmPassword) { setError('Passwords do not match'); setLoading(false); return; }
 
-    if (!validatePassword(password)) {
-      setError('Password must be at least 6 characters long');
-      setLoading(false);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
+    const payload = { ...formData, age: Number(age), monthlySalary: Number(monthlySalary), currency: currency || 'USD' };
 
     try {
-      await axios.post('http://localhost:5000/api/auth/register', formData);
+      await axios.post('http://localhost:5000/api/auth/register', payload);
       alert('Registration successful! Please login.');
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.msg || 'Registration failed');
+      const message = err.response?.data?.msg || err.response?.data?.message || 'Registration failed. Please try again.';
+      setError(message);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -127,6 +117,49 @@ const Register = () => {
               required
               className="form-input"
             />
+          </div>
+
+          <div className="form-group">
+            <select
+              name="currency"
+              value={currency}
+              onChange={onChange}
+              required
+              className="form-input"
+            >
+              <option value="">Select Currency</option>
+              <option value="USD">🇺🇸 USD - US Dollar</option>
+              <option value="EUR">🇪🇺 EUR - Euro</option>
+              <option value="GBP">🇬🇧 GBP - British Pound</option>
+              <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+              <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+              <option value="INR">🇮🇳 INR - Indian Rupee</option>
+              <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+              <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+              <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+              <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+              <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+              <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+              <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+              <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
+              <option value="KRW">🇰🇷 KRW - South Korean Won</option>
+              <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
+              <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
+              <option value="DKK">🇩🇰 DKK - Danish Krone</option>
+              <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
+              <option value="THB">🇹🇭 THB - Thai Baht</option>
+              <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
+              <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+              <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
+              <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
+              <option value="RUB">🇷🇺 RUB - Russian Ruble</option>
+              <option value="AED">🇦🇪 AED - UAE Dirham</option>
+              <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
+              <option value="EGP">🇪🇬 EGP - Egyptian Pound</option>
+              <option value="NGN">🇳🇬 NGN - Nigerian Naira</option>
+              <option value="KES">🇰🇪 KES - Kenyan Shilling</option>
+              <option value="LKR">🇱🇰 LKR - Sri Lankan Rupee</option>
+            </select>
           </div>
 
           <div className="form-group">
