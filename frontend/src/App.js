@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './theme/ThemeContext';
 import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -56,42 +57,48 @@ function App() {
 
   // Show launching page first
   if (showLaunching) {
-    return <LaunchingPage />;
+    return (
+      <ThemeProvider>
+        <LaunchingPage />
+      </ThemeProvider>
+    );
   }
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route 
-            path="/home" 
-            element={userAuthenticated ? <Home /> : <Navigate to="/login" replace />} 
-          />
-          <Route 
-            path="/transactions" 
-            element={userAuthenticated ? <Transactions /> : <Navigate to="/login" replace />} 
-          />
-          <Route 
-            path="/budgets" 
-            element={userAuthenticated ? <Budget /> : <Navigate to="/login" replace />} 
-          />
-          <Route 
-            path="/goals" 
-            element={userAuthenticated ? <Goals /> : <Navigate to="/login" replace />} 
-          />
-          <Route 
-            path="/reports" 
-            element={userAuthenticated ? <Reports /> : <Navigate to="/login" replace />} 
-          />
-          <Route path="/" element={<Navigate to="/login" replace />} />
-        </Routes>
-        
-        {/* Chatbot - Available on all pages when authenticated */}
-        {userAuthenticated && <Chatbot />}
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route 
+              path="/home" 
+              element={userAuthenticated ? <Home /> : <Navigate to="/login" replace />} 
+            />
+            <Route 
+              path="/transactions" 
+              element={userAuthenticated ? <Transactions /> : <Navigate to="/login" replace />} 
+            />
+            <Route 
+              path="/budgets" 
+              element={userAuthenticated ? <Budget /> : <Navigate to="/login" replace />} 
+            />
+            <Route 
+              path="/goals" 
+              element={userAuthenticated ? <Goals /> : <Navigate to="/login" replace />} 
+            />
+            <Route 
+              path="/reports" 
+              element={userAuthenticated ? <Reports /> : <Navigate to="/login" replace />} 
+            />
+            <Route path="/" element={<Navigate to="/login" replace />} />
+          </Routes>
+          
+          {/* Chatbot - Available on all pages when authenticated */}
+          {userAuthenticated && <Chatbot />}
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
