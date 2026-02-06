@@ -4,24 +4,12 @@
 export const tokens = {
   // ==================== COLORS ====================
   colors: {
-    // Brand Colors - Light Mode (Mint & Teal)
+    // Brand Colors (Blue Gradient)
     brand: {
-      primary: '#14B8A6', // Teal
-      primaryDark: '#0D9488',
-      primaryLight: '#2DD4BF',
-      primaryUltraLight: '#CCFBF1',
-    },
-
-    // Brand Colors - Dark Mode (Cyberpunk Gold & Neon Purple)
-    brandDark: {
-      primary: '#FFD700', // Cyberpunk Gold
-      primaryDark: '#FFB800',
-      primaryLight: '#FFED4E',
-      purple: '#D946EF', // Intense Neon Purple
-      purpleLight: '#F0ABFC',
-      purpleDark: '#C026D3',
-      neonPurple: '#E946F5', // Extra neon
-      neonPink: '#FF10F0', // Neon pink
+      primary: '#0066FF',
+      primaryDark: '#0047B3',
+      primaryLight: '#3385FF',
+      primaryUltraLight: '#E6F2FF',
     },
 
     // Secondary Colors (Accent)
@@ -29,11 +17,7 @@ export const tokens = {
       purple: '#7C3AED',
       teal: '#06B6D4',
       green: '#10B981',
-      gold: '#FFD700',
-      neonPurple: '#D946EF',
-      neonPink: '#FF10F0',
-      cyberPurple: '#E946F5',
-      electricBlue: '#00F0FF',
+      gold: '#F59E0B',
     },
 
     // Semantic Colors
@@ -60,90 +44,90 @@ export const tokens = {
       },
     },
 
-    // Light Theme Palette (Mint & Cream)
+    // Neutral Palette (Light Theme) - Light Blue Theme
     light: {
       background: {
-        primary: '#F0FDFA', // Mint cream
-        secondary: '#FFFFFF',
-        tertiary: '#CCFBF1', // Light teal
+        primary: '#EBF4FF', // Light blue background
+        secondary: '#DBEAFE', // Lighter blue
+        tertiary: '#BFDBFE', // Medium light blue
       },
       surface: {
-        base: '#FFFFFF',
-        elevated: '#FFFFFF',
+        base: '#F8FAFF', // Very light blue-white
+        elevated: '#F1F5FF', // Elevated light blue
       },
       border: {
-        light: '#99F6E4',
-        medium: '#5EEAD4',
-        dark: '#2DD4BF',
+        light: '#C7D2FE', // Light blue border
+        medium: '#A5B4FC', // Medium blue border
+        dark: '#818CF8', // Darker blue border
       },
       text: {
-        primary: '#134E4A', // Dark teal
-        secondary: '#0F766E',
-        tertiary: '#14B8A6',
-        disabled: '#5EEAD4',
+        primary: '#1E3A8A', // Deep blue text
+        secondary: '#3730A3', // Medium blue text
+        tertiary: '#4338CA', // Purple-blue text
+        disabled: '#6B7280', // Gray for disabled
       },
       accent: {
-        primary: '#14B8A6', // Teal
-        secondary: '#06B6D4', // Cyan
-        tertiary: '#10B981', // Emerald
+        primary: '#2563EB', // Brand blue
+        secondary: '#7C3AED', // Purple accent
+        tertiary: '#06B6D4', // Teal accent
+        glow: 'rgba(37, 99, 235, 0.4)', // Blue glow
       },
     },
 
-    // Dark Theme Palette (Modern Dark)
+    // Dark Theme Palette
     dark: {
       background: {
-        primary: '#0f172a', // Dark slate - used for main content
-        secondary: '#1e293b', // Slate gray
-        tertiary: '#334155', // Medium slate
+        primary: '#0F172A',
+        secondary: '#1E293B',
+        tertiary: '#334155',
       },
       surface: {
-        base: '#1e293b',
+        base: '#1E293B',
         elevated: '#334155',
       },
       border: {
-        light: '#475569', // Gray border
-        medium: '#64748b', // Medium gray
-        dark: '#94a3b8', // Light gray
+        light: '#334155',
+        medium: '#475569',
+        dark: '#64748B',
       },
       text: {
-        primary: '#FFFFFF', // Pure white
-        secondary: '#e2e8f0', // Light gray white
-        tertiary: '#cbd5e1', // Softer white
-        disabled: '#64748b',
+        primary: '#F8FAFC',
+        secondary: '#CBD5E1',
+        tertiary: '#94A3B8',
+        disabled: '#64748B',
       },
       accent: {
-        primary: '#3b82f6', // Blue accent
-        secondary: '#8b5cf6', // Purple accent
-        tertiary: '#06b6d4', // Cyan accent
-        glow: '#60a5fa', // Light blue glow
-        neon: '#a78bfa', // Light purple
+        primary: '#3385FF',
+        secondary: '#9333EA',
+        tertiary: '#0891B2',
+        glow: 'rgba(51, 133, 255, 0.6)',
       },
     },
   },
 
   // ==================== GRADIENTS ====================
   gradients: {
-    // Light Mode Gradients
-    hero: 'linear-gradient(135deg, #14B8A6 0%, #06B6D4 100%)', // Teal gradient
-    heroLight: 'linear-gradient(135deg, #5EEAD4 0%, #22D3EE 100%)',
-    card: 'linear-gradient(135deg, #F0FDFA 0%, #FFFFFF 100%)',
+    // Hero gradients for different themes
+    hero: 'linear-gradient(135deg, #0066FF 0%, #7C3AED 100%)', // Default
+    heroLight: 'linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 100%)', // Light blue hero
+    heroDark: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', // Dark theme hero
     
-    // Dark Mode Modern Gradients
-    heroDark: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', // Dark slate gradient
-    heroDarkAlt: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)', // Slate gradient
-    cardDark: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
-    glowDark: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
-    neonPurpleDark: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
-    cyberpunk: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+    // Card gradients
+    card: 'linear-gradient(135deg, #F8FAFF 0%, #EBF4FF 100%)', // Light blue cards
+    cardDark: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
     
-    // Universal
+    // Income/Expense
     income: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
     expense: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
-    premium: 'linear-gradient(135deg, #FFD700 0%, #D946EF 100%)',
+    premium: 'linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)',
+    
+    // Glass effects
     glass: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)',
-    glassDark: 'linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.9) 100%)',
-    neonPurple: 'linear-gradient(135deg, #D946EF 0%, #F0ABFC 100%)',
-    gold: 'linear-gradient(135deg, #FFD700 0%, #FFED4E 100%)',
+    glassDark: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%)',
+    
+    // Brand gradients
+    gold: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+    neonPurple: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 100%)',
   },
 
   // ==================== OPACITY LAYERS ====================

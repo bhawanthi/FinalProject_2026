@@ -27,23 +27,24 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Container */
+/* Container - Light Blue Theme */
 .budget-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 50%, #F0F7FF 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Modern Navigation */
+/* Modern Navigation - Light Blue Theme */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(248, 250, 255, 0.95);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(219, 234, 254, 0.4);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
 }
 
 .nav-brand .logo {
@@ -59,7 +60,10 @@
 }
 
 .logo-text {
-  color: white;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -81,29 +85,32 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(248, 250, 255, 0.8);
+  border: 1px solid rgba(219, 234, 254, 0.4);
   border-radius: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary, #1E3A8A);
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: white;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1));
+  border-color: rgba(59, 130, 246, 0.4);
+  color: var(--brand-primary, #2563EB);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .nav-link.active {
-  background: rgba(100, 181, 246, 0.3);
-  border-color: rgba(100, 181, 246, 0.5);
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  border-color: transparent;
   color: white;
-  box-shadow: 0 4px 12px rgba(100, 181, 246, 0.2);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
 .nav-icon {
@@ -124,13 +131,13 @@
 }
 
 .user-greeting {
-  color: white;
+  color: var(--text-primary, #1E3A8A);
   font-size: 1rem;
   font-weight: 600;
 }
 
 .current-time {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary, #3730A3);
   font-size: 0.85rem;
 }
 
@@ -172,11 +179,15 @@
   margin-bottom: 2rem;
 }
 
+/* Page Title - Light Blue Theme */
 .page-title {
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: white;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 2.5rem;
   font-weight: 700;
   margin: 0;

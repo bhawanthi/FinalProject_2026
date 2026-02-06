@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserData, clearAuthData, formatCurrency } from '../utils/auth';
+import { useTheme } from '../theme/ThemeContext';
 import TransactionModal from './TransactionModal';
 import ThemeToggle from './ThemeToggle';
 import './styles/Home.css';
@@ -8,6 +9,7 @@ import MoneyVueLogo from '../assets/Finance_Logo.png';
 import { sendNotificationEmail } from '../utils/sendEmail';
 
 const Home = () => {
+  const { theme, toggleTheme } = useTheme();
   const [user, setUser] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showIncomeModal, setShowIncomeModal] = useState(false);

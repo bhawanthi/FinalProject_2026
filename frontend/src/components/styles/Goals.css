@@ -1,22 +1,22 @@
-/* Goals.css - Matching the blue theme */
+/* Goals.css - Enhanced Light Blue Theme */
 
-/* Loading States */
+/* Loading States - Light Blue Theme */
 .loading-dashboard {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  background: linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 50%, #F0F7FF 100%);
   text-align: center;
-  color: white;
+  color: var(--text-primary, #1E3A8A);
 }
 
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #64b5f6;
+  border: 4px solid rgba(37, 99, 235, 0.2);
+  border-top: 4px solid #3B82F6;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
@@ -27,19 +27,20 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Modern Navigation */
+/* Modern Navigation - Light Blue Theme */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(248, 250, 255, 0.95);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(219, 234, 254, 0.4);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
 }
 
 .nav-brand {
@@ -62,7 +63,10 @@
 }
 
 .logo-text {
-  color: white;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -84,22 +88,25 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(248, 250, 255, 0.8);
+  border: 1px solid rgba(219, 234, 254, 0.4);
   border-radius: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary, #1E3A8A);
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: white;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1));
+  border-color: rgba(59, 130, 246, 0.4);
+  color: var(--brand-primary, #2563EB);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .nav-link.active {

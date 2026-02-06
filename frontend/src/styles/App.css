@@ -6,11 +6,29 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #f0f8ff 0%, #e8f4f8 50%, #e6f7ff 100%);
+  background: linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 50%, #F0F7FF 100%);
   min-height: 100vh;
+  color: var(--text-primary, #1E3A8A);
+  transition: all 0.3s ease;
+}
+
+/* Light Blue Theme Enhancements for Root */
+.light-theme {
+  --primary-blue: #2563EB;
+  --primary-blue-light: #3B82F6;
+  --primary-blue-dark: #1D4ED8;
+  --accent-blue: #06B6D4;
+  --accent-purple: #7C3AED;
+  --success-green: #10B981;
+  --warning-amber: #F59E0B;
+  --error-red: #EF4444;
+  --glass-blue: rgba(219, 234, 254, 0.8);
+  --glass-blue-light: rgba(248, 250, 255, 0.9);
+  --shadow-blue: 0 8px 32px rgba(37, 99, 235, 0.2);
+  --shadow-blue-lg: 0 16px 48px rgba(37, 99, 235, 0.25);
 }
 
 .App {
@@ -22,27 +40,68 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Light Blue Theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: rgba(219, 234, 254, 0.3);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #64b5f6;
-  border-radius: 4px;
+  background: linear-gradient(135deg, #3B82F6, #2563EB);
+  border-radius: 5px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #42a5f5;
+  background: linear-gradient(135deg, #2563EB, #1D4ED8);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility - Light Blue Theme */
 button:focus,
-input:focus {
-  outline: 2px solid #64b5f6;
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.6);
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Global animations and transitions */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass morphism utilities */
+.glass-blue {
+  background: rgba(248, 250, 255, 0.8);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(219, 234, 254, 0.3);
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15);
+}
+
+.glass-blue-light {
+  background: rgba(248, 250, 255, 0.9);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(219, 234, 254, 0.4);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
+}
+
+/* Premium gradients */
+.gradient-blue {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+}
+
+.gradient-blue-light {
+  background: linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 100%);
+}
+
+.gradient-blue-card {
+  background: linear-gradient(135deg, #F8FAFF 0%, #EBF4FF 100%);
 }

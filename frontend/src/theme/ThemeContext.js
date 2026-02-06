@@ -67,16 +67,16 @@ export const ThemeProvider = ({ children }) => {
       }
     }
 
-    // Brand colors (theme-dependent)
-    const brandColors = theme === 'light' ? tokens.colors.brand : tokens.colors.brandDark;
+    // Brand colors (theme-dependent) 
+    const brandColors = tokens.colors.brand;
     root.style.setProperty('--brand-primary', brandColors.primary);
     root.style.setProperty('--brand-primary-dark', brandColors.primaryDark);
     root.style.setProperty('--brand-primary-light', brandColors.primaryLight);
     
-    // Dark mode specific brand colors
+    // Theme-specific brand variations
     if (theme === 'dark') {
-      root.style.setProperty('--brand-purple', tokens.colors.brandDark.purple);
-      root.style.setProperty('--brand-purple-light', tokens.colors.brandDark.purpleLight);
+      root.style.setProperty('--brand-purple', colors.accent.secondary);
+      root.style.setProperty('--brand-purple-light', colors.accent.glow);
     }
 
     // Semantic colors
@@ -86,13 +86,20 @@ export const ThemeProvider = ({ children }) => {
     root.style.setProperty('--color-info', tokens.colors.semantic.info.base);
 
     // Gradients
-    root.style.setProperty('--gradient-hero', theme === 'light' ? tokens.gradients.hero : tokens.gradients.heroDark);
+    root.style.setProperty('--gradient-hero', theme === 'light' ? tokens.gradients.heroLight : tokens.gradients.heroDark);
     root.style.setProperty('--gradient-card', theme === 'light' ? tokens.gradients.card : tokens.gradients.cardDark);
     root.style.setProperty('--gradient-income', tokens.gradients.income);
     root.style.setProperty('--gradient-expense', tokens.gradients.expense);
     root.style.setProperty('--gradient-glass', theme === 'light' ? tokens.gradients.glass : tokens.gradients.glassDark);
     root.style.setProperty('--gradient-gold', tokens.gradients.gold);
     root.style.setProperty('--gradient-neon-purple', tokens.gradients.neonPurple);
+
+    // Glass opacity layers
+    const glassTokens = theme === 'light' ? tokens.opacity.glass : tokens.opacity.glassDark;
+    root.style.setProperty('--glass-strong', glassTokens.strong);
+    root.style.setProperty('--glass-medium', glassTokens.medium);
+    root.style.setProperty('--glass-light', glassTokens.light);
+    root.style.setProperty('--glass-ultra-light', glassTokens.ultraLight);
   }, [theme, colors]);
 
   // Context value
