@@ -57,10 +57,27 @@ export const ThemeProvider = ({ children }) => {
     root.style.setProperty('--text-tertiary', colors.text.tertiary);
     root.style.setProperty('--text-disabled', colors.text.disabled);
 
-    // Brand colors (theme-independent)
-    root.style.setProperty('--brand-primary', tokens.colors.brand.primary);
-    root.style.setProperty('--brand-primary-dark', tokens.colors.brand.primaryDark);
-    root.style.setProperty('--brand-primary-light', tokens.colors.brand.primaryLight);
+    // Accent colors
+    if (colors.accent) {
+      root.style.setProperty('--accent-primary', colors.accent.primary);
+      root.style.setProperty('--accent-secondary', colors.accent.secondary);
+      root.style.setProperty('--accent-tertiary', colors.accent.tertiary);
+      if (colors.accent.glow) {
+        root.style.setProperty('--accent-glow', colors.accent.glow);
+      }
+    }
+
+    // Brand colors (theme-dependent)
+    const brandColors = theme === 'light' ? tokens.colors.brand : tokens.colors.brandDark;
+    root.style.setProperty('--brand-primary', brandColors.primary);
+    root.style.setProperty('--brand-primary-dark', brandColors.primaryDark);
+    root.style.setProperty('--brand-primary-light', brandColors.primaryLight);
+    
+    // Dark mode specific brand colors
+    if (theme === 'dark') {
+      root.style.setProperty('--brand-purple', tokens.colors.brandDark.purple);
+      root.style.setProperty('--brand-purple-light', tokens.colors.brandDark.purpleLight);
+    }
 
     // Semantic colors
     root.style.setProperty('--color-success', tokens.colors.semantic.success.base);
@@ -69,10 +86,13 @@ export const ThemeProvider = ({ children }) => {
     root.style.setProperty('--color-info', tokens.colors.semantic.info.base);
 
     // Gradients
-    root.style.setProperty('--gradient-hero', tokens.gradients.hero);
+    root.style.setProperty('--gradient-hero', theme === 'light' ? tokens.gradients.hero : tokens.gradients.heroDark);
+    root.style.setProperty('--gradient-card', theme === 'light' ? tokens.gradients.card : tokens.gradients.cardDark);
     root.style.setProperty('--gradient-income', tokens.gradients.income);
     root.style.setProperty('--gradient-expense', tokens.gradients.expense);
     root.style.setProperty('--gradient-glass', theme === 'light' ? tokens.gradients.glass : tokens.gradients.glassDark);
+    root.style.setProperty('--gradient-gold', tokens.gradients.gold);
+    root.style.setProperty('--gradient-neon-purple', tokens.gradients.neonPurple);
   }, [theme, colors]);
 
   // Context value

@@ -1,4 +1,4 @@
-# 💎 MONIVUE Finance Tracker - Premium Styling Transformation Guide
+git add .# 💎 MONIVUE Finance Tracker - Premium Styling Transformation Guide
 
 ## 📋 Executive Summary
 

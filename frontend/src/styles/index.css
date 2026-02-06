@@ -38,6 +38,61 @@ body {
 .dark-theme {
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  /* Add subtle dark mode glow effects */
+}
+
+.dark-theme * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark theme effects */
+.dark-theme ::selection {
+  background: rgba(59, 130, 246, 0.4);
+  color: #FFFFFF;
+}
+
+.dark-theme ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.dark-theme ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 6px;
+  border: 2px solid var(--bg-secondary);
+}
+
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+/* Light theme scrollbar */
+.light-theme ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.light-theme ::-webkit-scrollbar-track {
+  background: #F0FDFA;
+}
+
+.light-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #14B8A6 0%, #06B6D4 100%);
+  border-radius: 6px;
+  border: 2px solid #F0FDFA;
+}
+
+.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0D9488 0%, #0284C7 100%);
+}
+
+.light-theme ::selection {
+  background: rgba(20, 184, 166, 0.3);
+  color: #0D9488;
 }
 
 /* ==================== TYPOGRAPHY ==================== */
@@ -184,11 +239,20 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.dark-theme .glass {
+  border: 1px solid #334155;
+}
+
 /* Neumorphism Effect (Light) */
 .neomorphism-light {
   background: var(--bg-primary);
   box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.8),
               8px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme specific utilities */
+.dark-theme .glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
 }
 
 /* Flex Utilities */

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserData, clearAuthData, formatCurrency } from '../utils/auth';
 import TransactionModal from './TransactionModal';
+import ThemeToggle from './ThemeToggle';
 import './styles/Home.css';
 import MoneyVueLogo from '../assets/Finance_Logo.png';
 import { sendNotificationEmail } from '../utils/sendEmail';
@@ -505,6 +506,10 @@ const Home = () => {
               Reports
             </button>
           </div>
+          
+          {/* Theme Toggle */}
+          <ThemeToggle />
+          
           <div className="user-info">
             <div className="user-details">
               <span className="user-greeting">{getTimeOfDayGreeting()}, {user.name}!</span>
