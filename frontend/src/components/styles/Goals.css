@@ -228,9 +228,25 @@
   font-weight: 600;
 }
 
+.light-theme .user-greeting {
+  color: #2c5aa0;
+}
+
+.dark-theme .user-greeting {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .current-time {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.85rem;
+}
+
+.light-theme .current-time {
+  color: #546e7a;
+}
+
+.dark-theme .current-time {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .logout-button {
@@ -284,8 +300,18 @@
   gap: 0.75rem;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2c5aa0;
+  background: linear-gradient(135deg, #6D28D9 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 0;
+}
+
+.dark-theme .page-title {
+  background: linear-gradient(135deg, #A78BFA 0%, #C4B5FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .title-icon {
@@ -306,15 +332,15 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #42a5f5, #2196f3);
+  background: var(--gradient-goals-card);
   color: white;
-  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #2196f3, #1976d2);
+  background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
 }
 
 .btn-secondary {
@@ -323,9 +349,20 @@
   border: 1px solid rgba(44, 90, 160, 0.2);
 }
 
+.dark-theme .btn-secondary {
+  background: rgba(76, 29, 149, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
 .btn-secondary:hover {
   background: white;
   transform: translateY(-1px);
+}
+
+.dark-theme .btn-secondary:hover {
+  background: rgba(76, 29, 149, 0.5);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .btn-icon {
@@ -352,6 +389,12 @@
   backdrop-filter: blur(10px);
 }
 
+.dark-theme .overview-card {
+  background: rgba(76, 29, 149, 0.4);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
 .overview-icon {
   font-size: 2rem;
   width: 60px;
@@ -359,7 +402,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #64b5f6, #42a5f5);
+  background: var(--gradient-goals-card);
   border-radius: 12px;
   color: white;
 }
@@ -374,10 +417,26 @@
   margin-bottom: 5px;
 }
 
+.light-theme .overview-label {
+  color: #666;
+}
+
+.dark-theme .overview-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .overview-value {
   font-size: 1.8rem;
   font-weight: 700;
   color: #2c5aa0;
+}
+
+.light-theme .overview-value {
+  color: #2c5aa0;
+}
+
+.dark-theme .overview-value {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 /* Goals Grid */
@@ -404,6 +463,12 @@
   backdrop-filter: blur(10px);
 }
 
+.dark-theme .empty-state {
+  background: rgba(76, 29, 149, 0.4);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
 .empty-icon {
   font-size: 4rem;
   margin-bottom: 20px;
@@ -415,9 +480,17 @@
   font-size: 1.5rem;
 }
 
+.dark-theme .empty-state h3 {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .empty-state p {
   color: #666;
   margin-bottom: 30px;
+}
+
+.dark-theme .empty-state p {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Goal Cards */
@@ -433,9 +506,19 @@
   position: relative;
 }
 
+.dark-theme .goal-card {
+  background: rgba(76, 29, 149, 0.4);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
 .goal-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 40px rgba(46, 90, 160, 0.15);
+}
+
+.dark-theme .goal-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .goal-card.on-track {
@@ -492,6 +575,11 @@
   background: rgba(76, 175, 80, 0.1);
 }
 
+.dark-theme .action-btn.contribute {
+  background: rgba(76, 175, 80, 0.2);
+  color: #81C784;
+}
+
 .action-btn.contribute:hover {
   background: rgba(76, 175, 80, 0.2);
   transform: scale(1.1);
@@ -499,6 +587,11 @@
 
 .action-btn.analysis {
   background: rgba(139, 92, 246, 0.1);
+}
+
+.dark-theme .action-btn.analysis {
+  background: rgba(139, 92, 246, 0.2);
+  color: #A78BFA;
 }
 
 .action-btn.analysis:hover {
@@ -510,6 +603,11 @@
   background: rgba(33, 150, 243, 0.1);
 }
 
+.dark-theme .action-btn.edit {
+  background: rgba(33, 150, 243, 0.2);
+  color: #64B5F6;
+}
+
 .action-btn.edit:hover {
   background: rgba(33, 150, 243, 0.2);
   transform: scale(1.1);
@@ -517,6 +615,11 @@
 
 .action-btn.delete {
   background: rgba(244, 67, 54, 0.1);
+}
+
+.dark-theme .action-btn.delete {
+  background: rgba(244, 67, 54, 0.2);
+  color: #E57373;
 }
 
 .action-btn.delete:hover {
@@ -541,8 +644,16 @@
   margin: 0 5px;
 }
 
+.dark-theme .separator {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .target {
   color: #2c5aa0;
+}
+
+.dark-theme .target {
+  color: rgba(167, 139, 250, 0.9);
 }
 
 .goal-progress {
@@ -556,6 +667,10 @@
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 5px;
+}
+
+.dark-theme .progress-bar {
+  background: rgba(76, 29, 149, 0.4);
 }
 
 .progress-fill {
@@ -573,6 +688,10 @@
   font-size: 0.85rem;
   color: #666;
   text-align: center;
+}
+
+.dark-theme .progress-text {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .goal-info {
@@ -593,9 +712,17 @@
   color: #666;
 }
 
+.dark-theme .deadline-label {
+  color: rgba(255, 255, 255, 0.65);
+}
+
 .deadline-value {
   font-weight: 600;
   color: #2c5aa0;
+}
+
+.dark-theme .deadline-value {
+  color: rgba(167, 139, 250, 0.9);
 }
 
 .deadline-value.urgent {
@@ -634,6 +761,10 @@
   color: #2c5aa0;
 }
 
+.dark-theme .remaining-amount {
+  color: rgba(167, 139, 250, 0.9);
+}
+
 .goal-description {
   color: #666;
   font-size: 0.9rem;
@@ -641,6 +772,11 @@
   font-style: italic;
   padding-top: 15px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .goal-description {
+  color: rgba(255, 255, 255, 0.65);
+  border-top-color: rgba(167, 139, 250, 0.2);
 }
 
 /* Modal Styles */
@@ -669,6 +805,12 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
+.dark-theme .modal-content {
+  background: rgba(76, 29, 149, 0.95);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -677,10 +819,18 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.dark-theme .modal-header {
+  border-bottom-color: rgba(167, 139, 250, 0.3);
+}
+
 .modal-header h2 {
   color: #2c5aa0;
   margin: 0;
   font-size: 1.5rem;
+}
+
+.dark-theme .modal-header h2 {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .close-btn {
@@ -697,6 +847,10 @@
   justify-content: center;
   border-radius: 50%;
   transition: all 0.3s ease;
+}
+
+.dark-theme .close-btn {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .close-btn:hover {
@@ -720,12 +874,20 @@
   margin-bottom: 10px;
 }
 
+.dark-theme .current-progress p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .mini-progress-bar {
   width: 100%;
   height: 8px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   overflow: hidden;
+}
+
+.dark-theme .mini-progress-bar {
+  background: rgba(76, 29, 149, 0.4);
 }
 
 .mini-progress-fill {
@@ -746,6 +908,10 @@
   font-weight: 600;
 }
 
+.dark-theme .form-group label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -756,6 +922,14 @@
   font-size: 1rem;
   transition: all 0.3s ease;
   font-family: inherit;
+}
+
+.dark-theme .form-group input,
+.dark-theme .form-group select,
+.dark-theme .form-group textarea {
+  background: rgba(76, 29, 149, 0.3);
+  border-color: rgba(167, 139, 250, 0.3);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .form-group input:focus,
@@ -796,6 +970,12 @@
   font-weight: 500;
 }
 
+.dark-theme .tag {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(109, 40, 217, 0.3) 100%);
+  color: rgba(167, 139, 250, 0.95);
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
 /* Transaction Type Specific Colors */
 .goal-card.income .current-amount {
   color: #2e7d32;
@@ -806,6 +986,12 @@
   border: 1px solid rgba(46, 125, 50, 0.2);
 }
 
+.dark-theme .goal-card.income .current-amount {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.3) 0%, rgba(46, 125, 50, 0.2) 100%);
+  border-color: rgba(76, 175, 80, 0.3);
+  color: #81C784;
+}
+
 .goal-card.expense .current-amount {
   color: #d32f2f;
   background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
@@ -813,6 +999,12 @@
   border-radius: 8px;
   font-weight: 600;
   border: 1px solid rgba(211, 47, 47, 0.2);
+}
+
+.dark-theme .goal-card.expense .current-amount {
+  background: linear-gradient(135deg, rgba(211, 47, 47, 0.3) 0%, rgba(211, 47, 47, 0.2) 100%);
+  border-color: rgba(244, 67, 54, 0.3);
+  color: #E57373;
 }
 
 /* Transaction Filters Section */

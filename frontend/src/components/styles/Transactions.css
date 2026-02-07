@@ -194,14 +194,22 @@
 }
 
 .user-greeting {
-  color: var(--text-primary, #1E3A8A);
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
 }
 
+.dark-theme .user-greeting {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .current-time {
-  color: var(--text-secondary, #3730A3);
+  color: var(--text-secondary);
   font-size: 0.85rem;
+}
+
+.dark-theme .current-time {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .logout-button {
@@ -253,11 +261,18 @@
   gap: 0.75rem;
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  background: linear-gradient(135deg, #059669 0%, #10B981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0;
+}
+
+.dark-theme .page-title {
+  background: linear-gradient(135deg, #34D399 0%, #6EE7B7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .title-icon {
@@ -342,6 +357,12 @@
   transition: all 0.3s ease;
 }
 
+.dark-theme .stat-card {
+  background: rgba(6, 78, 59, 0.4);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
 .stat-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(46, 90, 160, 0.15);
@@ -385,10 +406,18 @@
   margin-bottom: 4px;
 }
 
+.dark-theme .stat-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .stat-value {
   font-size: 1.8rem;
   font-weight: 700;
   color: #2c5aa0;
+}
+
+.dark-theme .stat-value {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 /* Filters Section */
@@ -401,6 +430,12 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+}
+
+.dark-theme .filters-section {
+  background: rgba(6, 78, 59, 0.4);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .filters-grid {
@@ -422,6 +457,10 @@
   font-size: 0.9rem;
 }
 
+.dark-theme .filter-group label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .filter-select,
 .filter-input {
   padding: 12px 14px;
@@ -433,12 +472,26 @@
   transition: all 0.3s ease;
 }
 
+.dark-theme .filter-select,
+.dark-theme .filter-input {
+  background-color: rgba(6, 78, 59, 0.3);
+  border-color: rgba(52, 211, 153, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .filter-select:focus,
 .filter-input:focus {
   outline: none;
   border-color: #64b5f6;
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(100, 181, 246, 0.15);
+}
+
+.dark-theme .filter-select:focus,
+.dark-theme .filter-input:focus {
+  border-color: var(--transactions-primary);
+  background-color: rgba(6, 78, 59, 0.5);
+  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
 }
 
 /* Transactions Section */
@@ -452,11 +505,22 @@
   backdrop-filter: blur(10px);
 }
 
+.dark-theme .transactions-section {
+  background: rgba(6, 78, 59, 0.4);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
 .loading-state,
 .empty-state {
   text-align: center;
   padding: 60px 20px;
   color: #546e7a;
+}
+
+.dark-theme .loading-state,
+.dark-theme .empty-state {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .loading-spinner {
@@ -484,6 +548,10 @@
   margin-bottom: 10px;
 }
 
+.dark-theme .empty-state h3 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 /* Transactions List */
 .transactions-list {
   display: flex;
@@ -504,10 +572,20 @@
   position: relative;
 }
 
+.dark-theme .transaction-item {
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.5) 0%, rgba(6, 95, 70, 0.5) 100%);
+  border-color: rgba(52, 211, 153, 0.1);
+}
+
 .transaction-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(100, 181, 246, 0.15);
   border-color: rgba(100, 181, 246, 0.2);
+}
+
+.dark-theme .transaction-item:hover {
+  box-shadow: 0 8px 25px rgba(52, 211, 153, 0.2);
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 .transaction-item.income {
@@ -547,11 +625,19 @@
   margin: 0 0 4px 0;
 }
 
+.dark-theme .transaction-description {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .transaction-meta {
   display: flex;
   gap: 15px;
   font-size: 0.9rem;
   color: #546e7a;
+}
+
+.dark-theme .transaction-meta {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .transaction-category {
@@ -597,6 +683,10 @@
   font-size: 0.8rem;
   color: #546e7a;
   text-transform: capitalize;
+}
+
+.dark-theme .transaction-payment {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .transaction-actions {
