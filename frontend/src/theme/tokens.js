@@ -44,33 +44,33 @@ export const tokens = {
       },
     },
 
-    // Neutral Palette (Light Theme) - Light Blue Theme
+    // Neutral Palette (Light Theme) - Enhanced Very Light Blue Theme
     light: {
       background: {
-        primary: '#EBF4FF', // Light blue background
-        secondary: '#DBEAFE', // Lighter blue
-        tertiary: '#BFDBFE', // Medium light blue
+        primary: '#F0F8FF', // Alice blue - very light blue background
+        secondary: '#E6F3FF', // Lighter sky blue
+        tertiary: '#DBE9FF', // Soft blue
       },
       surface: {
-        base: '#F8FAFF', // Very light blue-white
-        elevated: '#F1F5FF', // Elevated light blue
+        base: '#FAFCFF', // Almost white with blue tint
+        elevated: '#F5F9FF', // Elevated soft blue
       },
       border: {
-        light: '#C7D2FE', // Light blue border
-        medium: '#A5B4FC', // Medium blue border
-        dark: '#818CF8', // Darker blue border
+        light: '#D1E7FF', // Very light blue border
+        medium: '#B8DAFF', // Light blue border
+        dark: '#9CCAFF', // Medium blue border
       },
       text: {
-        primary: '#1E3A8A', // Deep blue text
-        secondary: '#3730A3', // Medium blue text
-        tertiary: '#4338CA', // Purple-blue text
-        disabled: '#6B7280', // Gray for disabled
+        primary: '#000000', // Black text for light mode
+        secondary: '#1F2937', // Dark gray text
+        tertiary: '#374151', // Medium gray text
+        disabled: '#9CA3AF', // Gray for disabled
       },
       accent: {
-        primary: '#2563EB', // Brand blue
-        secondary: '#7C3AED', // Purple accent
-        tertiary: '#06B6D4', // Teal accent
-        glow: 'rgba(37, 99, 235, 0.4)', // Blue glow
+        primary: '#3B82F6', // Bright blue accent
+        secondary: '#60A5FA', // Light blue accent
+        tertiary: '#93C5FD', // Very light blue accent
+        glow: 'rgba(59, 130, 246, 0.3)', // Soft blue glow
       },
     },
 
@@ -109,11 +109,11 @@ export const tokens = {
   gradients: {
     // Hero gradients for different themes
     hero: 'linear-gradient(135deg, #0066FF 0%, #7C3AED 100%)', // Default
-    heroLight: 'linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 100%)', // Light blue hero
+    heroLight: 'linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 50%, #DBE9FF 100%)', // Enhanced light blue hero
     heroDark: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', // Dark theme hero
     
     // Card gradients
-    card: 'linear-gradient(135deg, #F8FAFF 0%, #EBF4FF 100%)', // Light blue cards
+    card: 'linear-gradient(135deg, #FAFCFF 0%, #F5F9FF 100%)', // Very light blue cards
     cardDark: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
     
     // Income/Expense
