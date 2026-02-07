@@ -94,6 +94,43 @@ export const ThemeProvider = ({ children }) => {
     root.style.setProperty('--gradient-gold', tokens.gradients.gold);
     root.style.setProperty('--gradient-neon-purple', tokens.gradients.neonPurple);
 
+    // Feature-specific gradients
+    root.style.setProperty('--gradient-transactions', theme === 'light' ? tokens.gradients.transactions.light : tokens.gradients.transactions.dark);
+    root.style.setProperty('--gradient-transactions-card', tokens.gradients.transactions.card);
+    root.style.setProperty('--gradient-budget', theme === 'light' ? tokens.gradients.budget.light : tokens.gradients.budget.dark);
+    root.style.setProperty('--gradient-budget-card', tokens.gradients.budget.card);
+    root.style.setProperty('--gradient-goals', theme === 'light' ? tokens.gradients.goals.light : tokens.gradients.goals.dark);
+    root.style.setProperty('--gradient-goals-card', tokens.gradients.goals.card);
+    root.style.setProperty('--gradient-reports', theme === 'light' ? tokens.gradients.reports.light : tokens.gradients.reports.dark);
+    root.style.setProperty('--gradient-reports-card', tokens.gradients.reports.card);
+
+    // Feature-specific colors
+    const featureColors = tokens.colors.features;
+    
+    // Transactions colors
+    root.style.setProperty('--transactions-primary', theme === 'light' ? featureColors.transactions.light.primary : featureColors.transactions.dark.primary);
+    root.style.setProperty('--transactions-secondary', theme === 'light' ? featureColors.transactions.light.secondary : featureColors.transactions.dark.secondary);
+    root.style.setProperty('--transactions-background', theme === 'light' ? featureColors.transactions.light.background : featureColors.transactions.dark.background);
+    root.style.setProperty('--transactions-border', theme === 'light' ? featureColors.transactions.light.border : featureColors.transactions.dark.border);
+
+    // Budget colors
+    root.style.setProperty('--budget-primary', theme === 'light' ? featureColors.budget.light.primary : featureColors.budget.dark.primary);
+    root.style.setProperty('--budget-secondary', theme === 'light' ? featureColors.budget.light.secondary : featureColors.budget.dark.secondary);
+    root.style.setProperty('--budget-background', theme === 'light' ? featureColors.budget.light.background : featureColors.budget.dark.background);
+    root.style.setProperty('--budget-border', theme === 'light' ? featureColors.budget.light.border : featureColors.budget.dark.border);
+
+    // Goals colors
+    root.style.setProperty('--goals-primary', theme === 'light' ? featureColors.goals.light.primary : featureColors.goals.dark.primary);
+    root.style.setProperty('--goals-secondary', theme === 'light' ? featureColors.goals.light.secondary : featureColors.goals.dark.secondary);
+    root.style.setProperty('--goals-background', theme === 'light' ? featureColors.goals.light.background : featureColors.goals.dark.background);
+    root.style.setProperty('--goals-border', theme === 'light' ? featureColors.goals.light.border : featureColors.goals.dark.border);
+
+    // Reports colors
+    root.style.setProperty('--reports-primary', theme === 'light' ? featureColors.reports.light.primary : featureColors.reports.dark.primary);
+    root.style.setProperty('--reports-secondary', theme === 'light' ? featureColors.reports.light.secondary : featureColors.reports.dark.secondary);
+    root.style.setProperty('--reports-background', theme === 'light' ? featureColors.reports.light.background : featureColors.reports.dark.background);
+    root.style.setProperty('--reports-border', theme === 'light' ? featureColors.reports.light.border : featureColors.reports.dark.border);
+
     // Glass opacity layers
     const glassTokens = theme === 'light' ? tokens.opacity.glass : tokens.opacity.glassDark;
     root.style.setProperty('--glass-strong', glassTokens.strong);

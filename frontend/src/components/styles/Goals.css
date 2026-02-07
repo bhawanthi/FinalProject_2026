@@ -1,22 +1,22 @@
-/* Goals.css - Enhanced Light Blue Theme */
+/* Goals.css - Enhanced Purple Theme for Goals */
 
-/* Loading States - Light Blue Theme */
+/* Loading States - Purple Theme */
 .loading-dashboard {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 50%, #F0F7FF 100%);
+  background: var(--gradient-goals);
   text-align: center;
-  color: var(--text-primary, #1E3A8A);
+  color: #000000;
 }
 
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(37, 99, 235, 0.2);
-  border-top: 4px solid #3B82F6;
+  border: 4px solid rgba(124, 58, 237, 0.2);
+  border-top: 4px solid var(--goals-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
@@ -27,20 +27,82 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Modern Navigation - Light Blue Theme */
+/* Container - Purple Theme for Goals */
+.goals-container {
+  min-height: 100vh;
+  background: var(--gradient-goals);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+/* Light theme - Purple gradient */
+.light-theme .goals-container {
+  background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 50%, #DDD6FE 100%);
+}
+
+/* Dark theme - Dark purple gradient */
+.dark-theme .goals-container {
+  background: linear-gradient(135deg, #4C1D95 0%, #5B21B6 100%);
+}
+
+/* Light theme background pattern */
+.light-theme .goals-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(109, 40, 217, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dark theme background pattern */
+.dark-theme .goals-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, rgba(167, 139, 250, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Modern Navigation - Enhanced Purple Theme */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: rgba(248, 250, 255, 0.95);
-  -webkit-backdrop-filter: blur(25px);
-  backdrop-filter: blur(25px);
-  border-bottom: 1px solid rgba(219, 234, 254, 0.4);
+  background: rgba(245, 243, 255, 0.95);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  border-bottom: 1px solid var(--goals-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 4px 32px rgba(124, 58, 237, 0.12);
+  transition: all 0.3s ease;
+}
+
+/* Light theme navbar - Purple tint */
+.light-theme .navbar {
+  background: rgba(245, 243, 255, 0.95);
+  border-bottom: 1px solid var(--goals-border);
+  box-shadow: 0 4px 32px rgba(124, 58, 237, 0.15);
+}
+
+/* Dark theme navbar */
+.dark-theme .navbar {
+  background: rgba(76, 29, 149, 0.95);
+  border-bottom: 1px solid var(--goals-border);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
 }
 
 .nav-brand {
@@ -63,13 +125,20 @@
 }
 
 .logo-text {
-  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  background: linear-gradient(135deg, #6D28D9 0%, #7C3AED 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.5px;
+}
+
+.dark-theme .logo-text {
+  background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav-actions {
@@ -88,10 +157,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(248, 250, 255, 0.8);
-  border: 1px solid rgba(219, 234, 254, 0.4);
+  background: rgba(245, 243, 255, 0.8);
+  border: 1px solid var(--goals-border);
   border-radius: 12px;
-  color: var(--text-primary, #1E3A8A);
+  color: var(--text-primary);
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
@@ -102,18 +171,38 @@
 }
 
 .nav-link:hover {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1));
-  border-color: rgba(59, 130, 246, 0.4);
-  color: var(--brand-primary, #2563EB);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(109, 40, 217, 0.1));
+  border-color: var(--goals-primary);
+  color: var(--goals-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
 }
 
 .nav-link.active {
-  background: rgba(100, 181, 246, 0.3);
-  border-color: rgba(100, 181, 246, 0.5);
+  background: var(--gradient-goals-card);
+  border-color: transparent;
   color: white;
-  box-shadow: 0 4px 12px rgba(100, 181, 246, 0.2);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+/* Dark mode nav-link styles */
+.dark-theme .nav-link {
+  background: rgba(76, 29, 149, 0.5);
+  border: 1px solid var(--goals-border);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark-theme .nav-link:hover {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(139, 92, 246, 0.15));
+  border-color: var(--goals-primary);
+  color: var(--goals-primary);
+  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);
+}
+
+.dark-theme .nav-link.active {
+  background: var(--gradient-goals-card);
+  color: white;
+  box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4);
 }
 
 .nav-icon {
@@ -3292,4 +3381,65 @@
   height: 2px;
   background: linear-gradient(90deg, #f59e0b 0%, #dc2626 50%, #f59e0b 100%);
   opacity: 0.6;
+}
+
+/* =============== LIGHT MODE THEME OVERRIDES =============== */
+
+/* Light theme container background */
+.light-theme .goals-container {
+  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 30%, #DBE9FF 60%, #E6F3FF 100%);
+  position: relative;
+}
+
+/* Light theme background pattern */
+.light-theme .goals-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(37, 99, 235, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Light theme cards and components */
+.light-theme .goal-card,
+.light-theme .add-goal-btn,
+.light-theme .filter-section,
+.light-theme .stats-card,
+.light-theme .progress-section {
+  background: linear-gradient(135deg, #FAFCFF 0%, #F5F9FF 50%, #F0F8FF 100%);
+  border: 1px solid rgba(209, 231, 255, 0.7);
+  color: #000000;
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+}
+
+/* Light theme text colors */
+.light-theme h1, .light-theme h2, .light-theme h3, .light-theme h4, .light-theme h5, .light-theme h6,
+.light-theme p, .light-theme span, .light-theme div:not(.chart-circle), .light-theme label {
+  color: #000000 !important;
+}
+
+/* Light theme secondary text */
+.light-theme .goal-subtitle,
+.light-theme .goal-description,
+.light-theme .target-date {
+  color: #374151 !important;
+}
+
+/* Light theme navbar */
+.light-theme .navbar {
+  background: rgba(250, 252, 255, 0.95);
+  border-bottom: 1px solid rgba(209, 231, 255, 0.5);
+  box-shadow: 0 4px 32px rgba(59, 130, 246, 0.12);
+}
+
+/* Light theme buttons */
+.light-theme button:not(.chart-circle button) {
+  color: #000000;
 }

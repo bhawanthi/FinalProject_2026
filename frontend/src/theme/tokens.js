@@ -20,6 +20,66 @@ export const tokens = {
       gold: '#F59E0B',
     },
 
+    // Feature-Specific Colors for Dashboard
+    features: {
+      transactions: {
+        light: {
+          primary: '#10B981', // Green for transactions
+          secondary: '#059669',
+          background: '#D1FAE5',
+          border: '#6EE7B7',
+        },
+        dark: {
+          primary: '#34D399',
+          secondary: '#10B981',
+          background: '#064E3B',
+          border: '#065F46',
+        },
+      },
+      budget: {
+        light: {
+          primary: '#F59E0B', // Gold/Orange for budget
+          secondary: '#D97706',
+          background: '#FEF3C7',
+          border: '#FCD34D',
+        },
+        dark: {
+          primary: '#FBBF24',
+          secondary: '#F59E0B',
+          background: '#78350F',
+          border: '#92400E',
+        },
+      },
+      goals: {
+        light: {
+          primary: '#7C3AED', // Purple for goals
+          secondary: '#6D28D9',
+          background: '#EDE9FE',
+          border: '#C4B5FD',
+        },
+        dark: {
+          primary: '#A78BFA',
+          secondary: '#8B5CF6',
+          background: '#4C1D95',
+          border: '#5B21B6',
+        },
+      },
+      reports: {
+        light: {
+          primary: '#06B6D4', // Teal/Cyan for reports
+          secondary: '#0891B2',
+          background: '#CFFAFE',
+          border: '#67E8F9',
+        },
+        dark: {
+          primary: '#22D3EE',
+          secondary: '#06B6D4',
+          background: '#164E63',
+          border: '#155E75',
+        },
+      },
+    },
+
     // Semantic Colors
     semantic: {
       success: {
@@ -128,6 +188,28 @@ export const tokens = {
     // Brand gradients
     gold: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
     neonPurple: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 100%)',
+
+    // Feature-specific gradients
+    transactions: {
+      light: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 50%, #A7F3D0 100%)',
+      dark: 'linear-gradient(135deg, #064E3B 0%, #065F46 100%)',
+      card: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+    },
+    budget: {
+      light: 'linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 50%, #FDE68A 100%)',
+      dark: 'linear-gradient(135deg, #78350F 0%, #92400E 100%)',
+      card: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+    },
+    goals: {
+      light: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 50%, #DDD6FE 100%)',
+      dark: 'linear-gradient(135deg, #4C1D95 0%, #5B21B6 100%)',
+      card: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%)',
+    },
+    reports: {
+      light: 'linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 50%, #A5F3FC 100%)',
+      dark: 'linear-gradient(135deg, #164E63 0%, #155E75 100%)',
+      card: 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)',
+    },
   },
 
   // ==================== OPACITY LAYERS ====================
