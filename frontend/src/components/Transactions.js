@@ -234,7 +234,6 @@ const Transactions = () => {
       <nav className="navbar">
         <div className="nav-brand">
           <div className="logo">
-            <img src={MoneyVueLogo} alt="MoneyVue" className="logo-image" />
             <span className="logo-text">MONIVUE</span>
           </div>
         </div>

@@ -3,6 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import { getUserData, clearAuthData, formatCurrency } from '../utils/auth';
 import './styles/Reports.css';
 import MoneyVueLogo from '../assets/Finance_Logo.png';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title as TitleElement, // Renaming to avoid conflict with component
+  Tooltip,
+  Legend as LegendElement, // Renaming to avoid conflict
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  TitleElement,
+  Tooltip,
+  LegendElement
+);
 
 const Reports = () => {
   const [user, setUser] = useState(null);

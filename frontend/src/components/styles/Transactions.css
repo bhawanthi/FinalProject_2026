@@ -1,17 +1,17 @@
 /* Transactions.css - Enhanced Green Theme for Transactions */
 
-/* Container - Blue Theme for Transactions */
+/* Container - White Background for Transactions */
 .transactions-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8faff 0%, #e6f2ff 50%, #d6edff 100%);
+  background: #ffffff;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   transition: background 0.3s ease;
 }
 
-/* Light theme - Premium Blue gradient */
+/* Light theme - Pure White background */
 .light-theme .transactions-container {
-  background: linear-gradient(135deg, #f8faff 0%, #e6f2ff 50%, #d6edff 100%);
+  background: #ffffff;
 }
 
 /* Dark theme - Consistent Premium Dark */
@@ -19,18 +19,9 @@
   background: #0f172a;
 }
 
-/* Light theme background pattern */
+/* Light theme background pattern - removed for pure white */
 .light-theme .transactions-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-              radial-gradient(circle at 75% 75%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 /* Dark theme background pattern */
@@ -132,32 +123,30 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(236, 253, 245, 0.8);
-  border: 1px solid var(--transactions-border);
+  background: #ffffff;
+  border: 1px solid #dddddd;
   border-radius: 12px;
-  color: var(--text-primary);
+  color: #333333;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
 }
 
 .nav-link:hover {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.1));
-  border-color: var(--transactions-primary);
-  color: var(--transactions-primary);
+  background: #f5f5f5;
+  border-color: #cccccc;
+  color: #333333;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link.active {
-  background: var(--gradient-transactions-card);
-  border-color: transparent;
-  color: white;
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  background: #f0f0f0;
+  border-color: #cccccc;
+  color: #333333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 /* Dark mode nav-link styles */
 .dark-theme .nav-link {
@@ -211,20 +200,19 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, #f44336, #d32f2f);
-  border: none;
+  background: #ffffff;
+  border: 1px solid #dddddd;
   border-radius: 12px;
-  color: white;
+  color: #333333;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
 }
 
 .logout-button:hover {
-  background: linear-gradient(135deg, #d32f2f, #c62828);
+  background: #f5f5f5;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(244, 67, 54, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logout-icon {
@@ -255,10 +243,7 @@
   gap: 0.75rem;
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #333333;
   margin: 0;
 }
 
@@ -291,25 +276,27 @@
 }
 
 .btn-income {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  color: white;
+  background: #ffffff;
+  color: #333333;
+  border: 1px solid #dddddd;
 }
 
 .btn-income:hover {
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: #f5f5f5;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-expense {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-  color: white;
+  background: #ffffff;
+  color: #333333;
+  border: 1px solid #dddddd;
 }
 
 .btn-expense:hover {
-  background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+  background: #f5f5f5;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(244, 67, 54, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary {
@@ -342,30 +329,30 @@
   transition: all 0.3s ease;
 }
 
-/* Light theme card override to match the "Financial Dashboard" look */
+/* Light theme card - Pure white background */
 .light-theme .stat-card {
-  background: rgba(30, 41, 59, 1) !important; /* Solid dark blue-grey card */
-  border: 1px solid rgba(51, 65, 85, 0.5);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  background: #ffffff !important; /* Pure white cards */
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Update text colors inside the card for light theme to be white */
+/* Update text colors inside the card for light theme */
 .light-theme .stat-label {
-  color: #94a3b8 !important; /* Muted grey text */
+  color: #666666 !important;
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: capitalize;
 }
 
 .light-theme .stat-value {
-  color: #ffffff !important; /* White text for numbers */
+  color: #333333 !important;
   font-size: 1.875rem;
   font-weight: 700;
   margin-top: 0.25rem;
 }
 
 .light-theme .stat-subtitle {
-  color: #10b981 !important; /* Green for positive change */
+  color: #666666 !important;
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
@@ -383,23 +370,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+  background: #f0f0f0;
+  color: #666666;
 }
 
 .stat-card.income .stat-icon {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: #f0f0f0;
+  color: #666666;
 }
 
 .stat-card.expense .stat-icon {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  background: #f0f0f0;
+  color: #666666;
 }
 
 .stat-card.balance.positive .stat-icon {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: #f0f0f0;
+  color: #666666;
 }
 
 .stat-card.balance.negative .stat-icon {
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  background: #f0f0f0;
+  color: #666666;
 }
 
 .stat-content {
@@ -788,4 +780,11 @@
 /* Light theme buttons */
 .light-theme button:not(.chart-circle button) {
   color: #000000;
+}
+
+/* Light theme transaction items - Pure white background */
+.light-theme .transaction-item {
+  background: #ffffff !important;
+  border: 1px solid rgba(209, 231, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
 }

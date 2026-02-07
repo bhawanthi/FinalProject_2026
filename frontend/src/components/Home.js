@@ -5,8 +5,8 @@ import { useTheme } from '../theme/ThemeContext';
 import TransactionModal from './TransactionModal';
 import ThemeToggle from './ThemeToggle';
 import './styles/Home.css';
-import MoneyVueLogo from '../assets/Finance_Logo.png';
 import { sendNotificationEmail } from '../utils/sendEmail';
+import MoneyVueLogo from '../assets/Finance_Logo.png';
 
 const Home = () => {
   const { theme, toggleTheme } = useTheme();
@@ -466,7 +466,6 @@ const Home = () => {
       <nav className="navbar">
         <div className="nav-brand">
           <div className="logo">
-            <img src={MoneyVueLogo} alt="MoneyVue" className="logo-image" />
             <span className="logo-text">MONIVUE</span>
           </div>
         </div>
