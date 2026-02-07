@@ -592,7 +592,18 @@ Keep this information confidential and secure.
                   <div className="category-chart-container">
                     {/* Pie Chart Visualization */}
                     <div className="category-pie-chart">
-                      <div className="pie-chart-wrapper">
+                      <div 
+                        className="pie-chart-wrapper"
+                        style={{
+                          background: `conic-gradient(
+                            ${reportData.categoryBreakdown.map((cat, index, array) => {
+                              const start = array.slice(0, index).reduce((sum, item) => sum + item.percentage, 0);
+                              const end = start + cat.percentage;
+                              return `${cat.color} ${start}% ${end}%`;
+                            }).join(', ')}
+                          )`
+                        }}
+                      >
                         <div className="pie-center">
                           <div className="pie-total">{formatCurrency(reportData.summary?.totalExpenses || 0)}</div>
                           <div className="pie-label">Total Spent</div>

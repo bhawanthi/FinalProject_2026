@@ -198,7 +198,7 @@ router.get('/analytics', authenticateToken, async (req, res) => {
             .reduce((sum, t) => sum + t.amount, 0);
           
           const budgeted = categoryBudget.budgetedAmount || 0;
-          const percentage = budgeted > 0 ? (spent / budgeted) * 100 : 0;
+          const percentage = budgeted > 0 ? (spent / budgeted) * 100 : (spent > 0 ? 100 : 0);
           
           console.log(`Category ${categoryBudget.category}: budgeted=${budgeted}, spent=${spent}, percentage=${percentage}`);
           
@@ -208,7 +208,7 @@ router.get('/analytics', authenticateToken, async (req, res) => {
             spent: spent,
             remaining: budgeted - spent,
             percentage: Number(percentage.toFixed(1)),
-            status: percentage <= 100 ? 'under' : 'over'
+            status: percentage > 100 || (budgeted === 0 && spent > 0) ? 'over' : 'under'
           });
         });
       } else {
@@ -218,7 +218,7 @@ router.get('/analytics', authenticateToken, async (req, res) => {
           .reduce((sum, t) => sum + t.amount, 0);
         
         const budgeted = budget.totalBudget || 0;
-        const percentage = budgeted > 0 ? (spent / budgeted) * 100 : 0;
+        const percentage = budgeted > 0 ? (spent / budgeted) * 100 : (spent > 0 ? 100 : 0);
         
         console.log(`Total budget: budgeted=${budgeted}, spent=${spent}, percentage=${percentage}`);
         
@@ -228,7 +228,7 @@ router.get('/analytics', authenticateToken, async (req, res) => {
           spent: spent,
           remaining: budgeted - spent,
           percentage: Number(percentage.toFixed(1)),
-          status: percentage <= 100 ? 'under' : 'over'
+          status: percentage > 100 || (budgeted === 0 && spent > 0) ? 'over' : 'under'
         });
       }
     });

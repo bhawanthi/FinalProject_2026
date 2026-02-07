@@ -1,22 +1,22 @@
 /* Reports.css - Enhanced Cyan/Teal Theme for Reports */
 
-/* Loading States - Cyan Theme */
+/* Loading States - Blue Theme */
 .loading-dashboard {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: var(--gradient-reports);
+  background: linear-gradient(135deg, #f8faff 0%, #e6f2ff 50%, #d6edff 100%);
   text-align: center;
-  color: white;
+  color: #1e40af;
 }
 
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid var(--reports-primary);
+  border: 4px solid rgba(59, 130, 246, 0.2);
+  border-top: 4px solid #3b82f6;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
@@ -27,23 +27,23 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Container - Cyan/Teal Theme for Reports */
+/* Container - Blue Theme for Reports */
 .reports-container {
   min-height: 100vh;
-  background: var(--gradient-reports);
+  background: linear-gradient(135deg, #f8faff 0%, #e6f2ff 50%, #d6edff 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   transition: background 0.3s ease;
 }
 
-/* Light theme - Cyan gradient */
+/* Light theme - Premium Blue Gradient */
 .light-theme .reports-container {
-  background: linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 50%, #A5F3FC 100%);
+  background: linear-gradient(135deg, #f8faff 0%, #e6f2ff 50%, #d6edff 100%);
 }
 
-/* Dark theme - Dark teal gradient */
+/* Dark theme - Consistent Premium Dark */
 .dark-theme .reports-container {
-  background: #1a1f2e;
+  background: #0f172a;
 }
 
 /* Light theme background pattern */
@@ -54,8 +54,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 25% 25%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-              radial-gradient(circle at 75% 75%, rgba(8, 145, 178, 0.05) 0%, transparent 50%);
+  background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -68,34 +68,43 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 25% 25%, rgba(34, 211, 238, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+  background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Modern Navigation - Enhanced Cyan Theme */
+/* Modern Navigation - Enhanced Blue Theme */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: rgba(236, 254, 255, 0.95);
+  background: rgba(248, 250, 255, 0.95);
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
-  border-bottom: 1px solid var(--reports-border);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 32px rgba(6, 182, 212, 0.12);
+  box-shadow: 0 4px 32px rgba(59, 130, 246, 0.12);
   transition: all 0.3s ease;
 }
 
-/* Light theme navbar - Cyan tint */
+/* Light theme navbar - Blue tint */
 .light-theme .navbar {
-  background: rgba(236, 254, 255, 0.95);
-  border-bottom: 1px solid var(--reports-border);
-  box-shadow: 0 4px 32px rgba(6, 182, 212, 0.15);
+  background: rgba(248, 250, 255, 0.95);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 4px 32px rgba(59, 130, 246, 0.15);
+}
+
+/* Dark theme navbar */
+.dark-theme .navbar {
+  background: #1a2332;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 /* Dark theme navbar */
@@ -145,6 +154,8 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-links {
@@ -1700,15 +1711,7 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: conic-gradient(
-    from 0deg,
-    #3b82f6 0deg 60deg,
-    #ef4444 60deg 120deg,
-    #10b981 120deg 180deg,
-    #f59e0b 180deg 240deg,
-    #8b5cf6 240deg 300deg,
-    #06b6d4 300deg 360deg
-  );
+  background: rgba(255, 255, 255, 0.05);
   position: relative;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }

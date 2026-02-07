@@ -37,16 +37,35 @@
 
 /* Premium MoneyVue Dashboard Styles */
 
+/* Dashboard container */
 .home-container {
   min-height: 100vh;
-  background: var(--gradient-hero);
+  /* Use the tokens via CSS variables if possible, but hardcode for now to ensure consistency */
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   transition: background 0.3s ease;
 }
 
-/* Dark theme specific overrides */
+/* Dark theme specific overrides - Full Dark Mood */
 .dark-theme .home-container {
-  background: #1a1f2e;
+  background: linear-gradient(135deg, #0a0e1a 0%, #0f172a 30%, #1a1f35 60%, #0f172a 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Dark theme pattern overlay */
+.dark-theme .home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Light theme specific overrides - Enhanced Very Light Blue Theme */
@@ -76,74 +95,128 @@
   z-index: 1;
 }
 
-/* Light theme navbar - Premium Very Light Blue Glass Effect */
+/* Light theme navbar - Solid Dark Navy Blue */
 .light-theme .navbar {
-  background: rgba(250, 252, 255, 0.95);
-  border-bottom: 1px solid rgba(209, 231, 255, 0.5);
-  -webkit-backdrop-filter: blur(25px);
-  backdrop-filter: blur(25px);
-  box-shadow: 0 4px 32px rgba(59, 130, 246, 0.12);
+  background: #1e293b;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* Modern Navigation - Enhanced for Very Light Blue Theme */
+/* Modern Navigation - Solid Dark Navy Blue */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: rgba(250, 252, 255, 0.95);
-  -webkit-backdrop-filter: blur(30px);
-  backdrop-filter: blur(30px);
-  border-bottom: 1px solid rgba(209, 231, 255, 0.4);
+  background: #1e293b;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(30, 41, 59, 0.6);
   position: sticky;
   top: 0;
   z-index: 100;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 32px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 
 .dark-theme .navbar {
-  background: var(--glass-dark-medium, rgba(30, 41, 59, 0.85));
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: #1a2332;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+/* Logo Brand Container */
+.nav-brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: all 0.3s ease;
 }
 
 .logo-text {
-  color: var(--text-primary);
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  transition: color 0.3s ease;
-}
-
-.light-theme .logo-text {
-  background: linear-gradient(135deg, #000000 0%, #1F2937 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1e3a8a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(30, 58, 138, 0.3);
+  transition: all 0.3s ease;
+}
+
+.light-theme .logo-text {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #1e40af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 4px rgba(30, 58, 138, 0.4));
 }
 
 /* Logo Image Enhancement for Light Theme */
 .light-theme .logo .logo-image {
-  border: 2px solid rgba(59, 130, 246, 0.3);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .light-theme .logo .logo-image:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .dark-theme .logo-text {
-  color: var(--text-primary);
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 6px rgba(59, 130, 246, 0.5));
+}
+
+/* Logo Text Hover Effects */
+.logo-text:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(30, 58, 138, 0.6));
+}
+
+.light-theme .logo-text:hover {
+  filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.7));
+}
+
+.dark-theme .logo-text:hover {
+  filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.8));
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-links {
@@ -151,14 +224,14 @@
   gap: 1rem;
 }
 
-/* Navigation Links - Enhanced Light Blue Theme */
+/* Navigation Links - Dark Navbar Design */
 .nav-link {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(248, 250, 255, 0.8);
-  border: 1px solid rgba(219, 234, 254, 0.4);
-  color: var(--text-primary, #1E3A8A);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   padding: 0.75rem 1.25rem;
   border-radius: 12px;
   cursor: pointer;
@@ -171,17 +244,17 @@
 }
 
 .light-theme .nav-link {
-  background: rgba(245, 249, 255, 0.9);
-  border-color: rgba(209, 231, 255, 0.6);
-  color: #000000;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
 }
 
 .light-theme .nav-link:hover {
-  background: linear-gradient(135deg, #E6F3FF 0%, #DBE9FF 100%);
-  border-color: rgba(147, 197, 253, 0.8);
-  color: #000000;
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .nav-link.active {
@@ -226,7 +299,7 @@
 
 .user-greeting {
   display: block;
-  color: var(--text-primary);
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
@@ -234,7 +307,7 @@
 }
 
 .current-time {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
   transition: color 0.3s ease;
 }
@@ -371,6 +444,17 @@
 
 .light-theme .dropdown-header {
   background: linear-gradient(135deg, #EBF4FF 0%, #DBEAFE 100%);
+}
+
+.dark-theme .dropdown-header {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.dark-theme .profile-dropdown {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.98) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.1);
 }
 
 .dropdown-avatar {
@@ -672,9 +756,12 @@
 }
 
 .dark-theme .metric-card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-light);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #F8FAFC;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.08);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 /* Enhanced Very Light Blue Metric Cards */
@@ -858,9 +945,12 @@
 }
 
 .dark-theme .insight-card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-light);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.08);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  color: #F8FAFC;
 }
 
 /* Enhanced Very Light Blue Insight Cards */

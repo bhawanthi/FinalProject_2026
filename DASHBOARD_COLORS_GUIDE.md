@@ -5,7 +5,43 @@ This guide documents the color schemes for each dashboard feature in both **Ligh
 
 ---
 
-## 🟢 Transactions Dashboard
+## � Navigation Bar (Navbar)
+
+### Light Mode
+- **Background Gradient**: `linear-gradient(135deg, rgba(240, 248, 255, 0.98) 0%, rgba(230, 243, 255, 0.98) 50%, rgba(219, 233, 255, 0.98) 100%)`
+- **Border**: `rgba(209, 231, 255, 0.6)` (Soft Blue Border)
+- **Backdrop Filter**: `blur(25px)` (Glass morphism effect)
+- **Shadow**: `0 4px 32px rgba(59, 130, 246, 0.15)`
+- **Color Scheme**: Matches the main dashboard background gradient
+
+**CSS Implementation:**
+```css
+.light-theme .navbar {
+  background: linear-gradient(135deg, rgba(240, 248, 255, 0.98) 0%, rgba(230, 243, 255, 0.98) 50%, rgba(219, 233, 255, 0.98) 100%);
+  border-bottom: 1px solid rgba(209, 231, 255, 0.6);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 4px 32px rgba(59, 130, 246, 0.15);
+}
+```
+
+### Dark Mode
+- **Background Gradient**: `linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%)`
+- **Border**: `rgba(51, 65, 85, 0.6)` (Dark Slate Border)
+- **Shadow**: `0 4px 20px rgba(0, 0, 0, 0.3)`
+- **Color Scheme**: Matches the dark dashboard background
+
+**CSS Implementation:**
+```css
+.dark-theme .navbar {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+```
+
+---
+
+## �🟢 Transactions Dashboard
 
 ### Light Mode
 - **Primary Color**: `#10B981` (Emerald Green)

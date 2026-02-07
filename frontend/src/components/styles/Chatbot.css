@@ -350,6 +350,75 @@
   cursor: not-allowed;
 }
 
+/* Dark Theme Support */
+.dark-theme .chatbot-window {
+  background: var(--surface-base);
+  border: 1px solid var(--border-medium);
+}
+
+.dark-theme .chatbot-messages {
+  background: var(--bg-secondary);
+}
+
+.dark-theme .chatbot-messages::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.dark-theme .chatbot-messages::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+}
+
+.dark-theme .message.bot .message-content {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+.dark-theme .message.user .message-content {
+  color: white; /* Keep user message text white as it has colored background */
+}
+
+.dark-theme .message-time {
+  color: var(--text-tertiary);
+}
+
+.dark-theme .chatbot-quick-questions {
+  background: var(--surface-base);
+  border-top: 1px solid var(--border-light);
+}
+
+.dark-theme .quick-question-btn {
+  background: var(--bg-tertiary);
+  border-color: var(--border-light);
+  color: var(--text-secondary);
+}
+
+.dark-theme .quick-question-btn:hover {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+.dark-theme .chatbot-input {
+  background: var(--surface-base);
+  border-top: 1px solid var(--border-light);
+}
+
+.dark-theme .chatbot-input textarea {
+  background: var(--bg-tertiary);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+.dark-theme .chatbot-input textarea:focus {
+  border-color: var(--brand-primary);
+}
+
+.dark-theme .chatbot-input textarea:disabled {
+  background: var(--bg-primary);
+  color: var(--text-disabled);
+}
+
 .send-button {
   width: 44px;
   height: 44px;

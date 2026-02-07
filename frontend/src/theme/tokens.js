@@ -169,8 +169,8 @@ export const tokens = {
   gradients: {
     // Hero gradients for different themes
     hero: 'linear-gradient(135deg, #0066FF 0%, #7C3AED 100%)', // Default
-    heroLight: 'linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 50%, #DBE9FF 100%)', // Enhanced light blue hero
-    heroDark: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', // Dark theme hero
+    heroLight: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)', // Main light theme (Premium Blue)
+    heroDark: '#1a1f2e', // Dark theme (consistent flat dark)
     
     // Card gradients
     card: 'linear-gradient(135deg, #FAFCFF 0%, #F5F9FF 100%)', // Very light blue cards

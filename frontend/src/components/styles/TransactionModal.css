@@ -360,3 +360,74 @@
   background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%) !important;
   border-radius: 8px !important;
 }
+/* Dark Theme Support */
+.dark-theme .transaction-modal-overlay {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.dark-theme .transaction-modal {
+  background: var(--surface-base);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .modal-header {
+  border-bottom: 1px solid var(--border-medium);
+  background: var(--surface-elevated);
+}
+
+.dark-theme .form-label {
+  color: var(--text-secondary);
+}
+
+.dark-theme .form-input,
+.dark-theme .form-select {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+
+.dark-theme .form-input:focus,
+.dark-theme .form-select:focus {
+  border-color: var(--brand-primary);
+  background-color: var(--bg-tertiary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .amount-input .form-input {
+  color: var(--text-primary);
+}
+
+.dark-theme .checkbox-label {
+  color: var(--text-secondary);
+}
+
+.dark-theme .checkbox {
+  border-color: var(--brand-primary);
+}
+
+.dark-theme .checkbox:checked {
+  background-color: var(--brand-primary);
+}
+
+.dark-theme .react-datepicker {
+  background-color: var(--surface-elevated) !important;
+  border-color: var(--border-medium) !important;
+}
+
+.dark-theme .react-datepicker__header {
+  background: var(--bg-tertiary) !important;
+}
+
+.dark-theme .react-datepicker__day {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .react-datepicker__day:hover {
+  background-color: var(--brand-primary) !important;
+}
+
+.dark-theme .react-datepicker__day--disabled {
+  color: var(--text-disabled) !important;
+}
+

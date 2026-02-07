@@ -32,13 +32,15 @@ app.use((req, res, next) => {
     return next();
   }
 
-  // Block all requests if DB not connected
+  // Block all requests if DB not connected, but provide helpful message
   if (mongoose.connection.readyState !== 1) {
     console.warn(`⚠️ Request blocked - DB not connected (state: ${mongoose.connection.readyState})`);
     return res.status(503).json({ 
-      msg: 'Database not connected. Please wait or check server logs.',
+      msg: '🔧 Database connection needed! Please check MONGODB_SETUP_INSTRUCTIONS.md for help.',
       error: 'DB_NOT_CONNECTED',
-      dbState: mongoose.connection.readyState
+      dbState: mongoose.connection.readyState,
+      instructions: 'Go to https://cloud.mongodb.com/ → Resume cluster → Update network access → Get new connection string',
+      helpFile: 'See MONGODB_SETUP_INSTRUCTIONS.md in project root'
     });
   }
   
