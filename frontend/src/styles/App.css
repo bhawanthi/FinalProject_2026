@@ -9,9 +9,9 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--bg-primary, #1a1f2e);
+  background: var(--bg-primary, #F8FAFC);
   min-height: 100vh;
-  color: var(--text-primary, #1E3A8A);
+  color: var(--text-primary, #000000);
   transition: all 0.3s ease;
 }
 
@@ -29,6 +29,16 @@ body {
   --glass-blue-light: rgba(248, 250, 255, 0.9);
   --shadow-blue: 0 8px 32px rgba(37, 99, 235, 0.2);
   --shadow-blue-lg: 0 16px 48px rgba(37, 99, 235, 0.25);
+}
+
+.light-theme body {
+  background: var(--bg-primary, #F8FAFC);
+  color: var(--text-primary, #000000);
+}
+
+.dark-theme body {
+  background: var(--bg-primary, #0F172A);
+  color: var(--text-primary, #FFFFFF);
 }
 
 .App {

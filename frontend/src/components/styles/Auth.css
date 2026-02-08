@@ -5,7 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  background: var(--bg-primary, #F8FAFC);
+  color: var(--text-primary, #000000);
   padding: 20px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
@@ -25,7 +26,8 @@
 
 /* Dark theme for Auth pages */
 .dark-theme .auth-container {
-  background: #1a1f2e;
+  background: var(--bg-primary, #0F172A);
+  color: var(--text-primary, #FFFFFF);
 }
 
 .dark-theme .auth-container::before {
@@ -39,11 +41,11 @@
 }
 
 .dark-theme .auth-title {
-  color: #fff;
+  color: var(--text-primary, #FFFFFF);
 }
 
 .dark-theme .auth-subtitle {
-  color: #ccc;
+  color: var(--text-secondary, #CBD5E1);
 }
 
 @keyframes float {

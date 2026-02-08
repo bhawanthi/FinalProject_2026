@@ -1138,7 +1138,7 @@
 }
 
 .analysis-section h3 {
-  color: #1e3c72;
+  color: var(--text-primary, #000000);
   margin-bottom: 15px;
   display: flex;
   align-items: center;

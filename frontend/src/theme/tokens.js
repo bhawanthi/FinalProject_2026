@@ -122,8 +122,8 @@ export const tokens = {
       },
       text: {
         primary: '#000000', // Black text for light mode
-        secondary: '#1F2937', // Dark gray text
-        tertiary: '#374151', // Medium gray text
+        secondary: '#374151', // Dark gray text
+        tertiary: '#6B7280', // Medium gray text
         disabled: '#9CA3AF', // Gray for disabled
       },
       accent: {
@@ -151,10 +151,10 @@ export const tokens = {
         dark: '#64748B',
       },
       text: {
-        primary: '#F8FAFC',
-        secondary: '#CBD5E1',
-        tertiary: '#94A3B8',
-        disabled: '#64748B',
+        primary: '#FFFFFF', // Pure white text for dark mode
+        secondary: '#CBD5E1', // Light gray text
+        tertiary: '#94A3B8', // Medium gray text
+        disabled: '#64748B', // Disabled gray
       },
       accent: {
         primary: '#3385FF',
@@ -169,8 +169,8 @@ export const tokens = {
   gradients: {
     // Hero gradients for different themes
     hero: 'linear-gradient(135deg, #0066FF 0%, #7C3AED 100%)', // Default
-    heroLight: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)', // Main light theme (Premium Blue)
-    heroDark: '#1a1f2e', // Dark theme (consistent flat dark)
+    heroLight: 'linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%)', // Main light theme (Light Gray)
+    heroDark: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', // Dark theme (Dark Gray)
     
     // Card gradients
     card: 'linear-gradient(135deg, #FAFCFF 0%, #F5F9FF 100%)', // Very light blue cards

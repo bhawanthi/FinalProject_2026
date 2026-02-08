@@ -40,15 +40,16 @@
 /* Dashboard container */
 .home-container {
   min-height: 100vh;
-  /* Use the tokens via CSS variables if possible, but hardcode for now to ensure consistency */
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  /* Use light background instead of dark blue gradient */
+  background: var(--bg-primary, #F8FAFC);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   transition: background 0.3s ease;
 }
 
-/* Dark theme specific overrides - Full Dark Mood */
+/* Dark theme specific overrides - Dark Background with White Text */
 .dark-theme .home-container {
-  background: linear-gradient(135deg, #0a0e1a 0%, #0f172a 30%, #1a1f35 60%, #0f172a 100%);
+  background: var(--bg-primary, #0F172A);
+  color: var(--text-primary, #FFFFFF);
   min-height: 100vh;
   position: relative;
 }
@@ -68,9 +69,10 @@
   z-index: 0;
 }
 
-/* Light theme specific overrides - Enhanced Very Light Blue Theme */
+/* Light theme specific overrides - Clean Light Theme */
 .light-theme .home-container {
-  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 30%, #DBE9FF 60%, #E6F3FF 100%);
+  background: var(--bg-primary, #F8FAFC);
+  color: var(--text-primary, #000000);
   min-height: 100vh;
   position: relative;
 }

@@ -850,14 +850,14 @@
 /* Additional Goals-style classes for Budget page */
 .goals-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  background: var(--bg-primary, #F8FAFC);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .goals-header {
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  color: white;
+  background: var(--bg-secondary, #E2E8F0);
+  color: var(--text-primary, #000000);
 }
 
 .header-content {
