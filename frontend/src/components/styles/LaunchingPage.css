@@ -17,6 +17,33 @@
   background: #1E293B;
 }
 
+.dark-theme .brand-name {
+  color: #FFFFFF;
+  text-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .brand-tagline {
+  color: #FFFFFF;
+  text-shadow: 
+    0 2px 4px rgba(255, 255, 255, 0.1),
+    0 4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme .brand-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .feature-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .loading-text {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .launching-container.fade-out {
   opacity: 0;
 }
