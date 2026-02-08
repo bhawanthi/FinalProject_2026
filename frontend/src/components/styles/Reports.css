@@ -1534,7 +1534,7 @@
 }
 
 .export-info h4 {
-  color: white;
+  color: #000000;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -1544,11 +1544,11 @@
 }
 
 .dark-theme .export-info h4 {
-  color: rgba(255, 255, 255, 0.95);
+  color: #000000;
 }
 
 .export-info ul {
-  color: rgba(255, 255, 255, 0.8);
+  color: #000000;
   font-size: 0.9rem;
   line-height: 1.6;
   margin: 0;
@@ -1556,7 +1556,7 @@
 }
 
 .dark-theme .export-info ul {
-  color: rgba(255, 255, 255, 0.75);
+  color: #000000;
 }
 
 .export-info li {
