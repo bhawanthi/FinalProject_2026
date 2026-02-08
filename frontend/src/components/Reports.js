@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserData, clearAuthData, formatCurrency } from '../utils/auth';
 import './styles/Reports.css';
-import MoneyVueLogo from '../assets/Finance_Logo.png';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -302,7 +301,6 @@ Keep this information confidential and secure.
       <nav className="navbar">
         <div className="nav-brand">
           <div className="logo">
-            <img src={MoneyVueLogo} alt="MoneyVue" className="logo-image" />
             <span className="logo-text">MONIVUE</span>
           </div>
         </div>

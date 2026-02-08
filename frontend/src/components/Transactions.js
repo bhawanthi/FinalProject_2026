@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { getUserData, clearAuthData, formatCurrency } from '../utils/auth';
 import TransactionModal from './TransactionModal';
 import './styles/Goals.css';
-import MoneyVueLogo from '../assets/Finance_Logo.png';
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);

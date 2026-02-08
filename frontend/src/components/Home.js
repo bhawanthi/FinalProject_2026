@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserData, clearAuthData, formatCurrency } from '../utils/auth';
-import { useTheme } from '../theme/ThemeContext';
 import TransactionModal from './TransactionModal';
 import ThemeToggle from './ThemeToggle';
 import './styles/Home.css';
 import { sendNotificationEmail } from '../utils/sendEmail';
-import MoneyVueLogo from '../assets/Finance_Logo.png';
 
 const Home = () => {
-  const { theme, toggleTheme } = useTheme();
   const [user, setUser] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showIncomeModal, setShowIncomeModal] = useState(false);
@@ -326,7 +323,6 @@ const Home = () => {
     }
         // Build professional AI-powered content
         const baseSalary = user?.monthlySalary || 0;
-        const incomeTotal = transactionStats?.totals?.find(t => t._id === 'income')?.total || 0;
         let salaryTips = '';
         if (notificationSettings.includeSalaryTips) {
           salaryTips = `Your base salary is $${baseSalary}. AI recommends the 50/30/20 rule: $${(baseSalary * 0.5).toFixed(2)} for essentials, $${(baseSalary * 0.3).toFixed(2)} for goals, $${(baseSalary * 0.2).toFixed(2)} for savings.`;

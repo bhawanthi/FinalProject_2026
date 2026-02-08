@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "start:memory": "node start-with-mongodb.js",
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -36,6 +37,7 @@
     "@shelf/jest-mongodb": "^6.0.2",
     "cross-env": "^10.1.0",
     "jest": "^30.2.0",
+    "mongodb-memory-server": "^11.0.1",
     "nodemon": "^3.0.1",
     "supertest": "^7.2.2"
   }
