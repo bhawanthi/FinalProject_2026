@@ -171,7 +171,7 @@
   background: rgba(236, 254, 255, 0.8);
   border: 1px solid var(--reports-border);
   border-radius: 12px;
-  color: var(--text-primary);
+  color: #000000;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
@@ -430,7 +430,7 @@
 }
 
 .dropdown-name {
-  color: #1e40af;
+  color: #000000;
   font-weight: 600;
   font-size: 0.95rem;
 }
@@ -440,7 +440,7 @@
 }
 
 .dropdown-email {
-  color: #64748b;
+  color: #000000;
   font-size: 0.85rem;
 }
 
@@ -465,7 +465,7 @@
   text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: #374151;
+  color: #000000;
   font-size: 0.9rem;
 }
 
@@ -475,7 +475,7 @@
 
 .dropdown-item:hover {
   background: rgba(59, 130, 246, 0.1);
-  color: #1e40af;
+  color: #000000;
 }
 
 .dark-theme .dropdown-item:hover {

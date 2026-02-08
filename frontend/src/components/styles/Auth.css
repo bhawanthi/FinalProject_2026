@@ -81,10 +81,7 @@
 .auth-title {
   text-align: center;
   margin-bottom: 30px;
-  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.8px;
@@ -109,7 +106,7 @@
   font-weight: 400;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(145deg, #F8FAFF, #F1F5FF);
-  color: var(--text-primary, #1E3A8A);
+  color: #000000;
   box-sizing: border-box;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -124,7 +121,7 @@
 }
 
 .form-input::placeholder {
-  color: #90a4ae;
+  color: #000000;
   font-weight: 400;
 }
 
@@ -176,19 +173,19 @@
 .auth-link {
   text-align: center;
   margin-top: 25px;
-  color: #546e7a;
+  color: #000000;
   font-size: 14px;
 }
 
 .auth-link a {
-  color: #42a5f5;
+  color: #000000;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .auth-link a:hover {
-  color: #2196f3;
+  color: #000000;
   text-decoration: underline;
 }
 

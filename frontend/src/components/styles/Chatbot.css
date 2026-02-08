@@ -228,7 +228,7 @@
 
 .message.bot .message-content {
   background: white;
-  color: #333;
+  color: #000000;
   border-bottom-left-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
@@ -241,7 +241,7 @@
 
 .message-time {
   font-size: 11px;
-  color: #999;
+  color: #000000;
   margin-top: 4px;
   padding: 0 8px;
 }
@@ -304,7 +304,7 @@
   border: 1px solid #e0e0e0;
   border-radius: 20px;
   font-size: 12px;
-  color: #1e3c72;
+  color: #000000;
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;

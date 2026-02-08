@@ -293,7 +293,7 @@
   gap: 0.75rem;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2c5aa0;
+  color: #000000;
   margin: 0;
 }
 
@@ -379,14 +379,14 @@
 
 .overview-label {
   font-size: 0.9rem;
-  color: #666;
+  color: #000000;
   margin-bottom: 5px;
 }
 
 .overview-value {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #2c5aa0;
+  color: #000000;
 }
 
 /* Goals Grid */
@@ -419,13 +419,13 @@
 }
 
 .empty-state h3 {
-  color: #2c5aa0;
+  color: #000000;
   margin-bottom: 10px;
   font-size: 1.5rem;
 }
 
 .empty-state p {
-  color: #666;
+  color: #000000;
   margin-bottom: 30px;
 }
 
@@ -472,7 +472,7 @@
 }
 
 .goal-name {
-  color: #2c5aa0;
+  color: #000000;
   font-size: 1.3rem;
   font-weight: 700;
   margin: 0;
@@ -546,12 +546,12 @@
 }
 
 .separator {
-  color: #999;
+  color: #000000;
   margin: 0 5px;
 }
 
 .target {
-  color: #2c5aa0;
+  color: #000000;
 }
 
 .goal-progress {
@@ -580,7 +580,7 @@
 
 .progress-text {
   font-size: 0.85rem;
-  color: #666;
+  color: #000000;
   text-align: center;
 }
 
@@ -599,12 +599,12 @@
 }
 
 .deadline-label {
-  color: #666;
+  color: #000000;
 }
 
 .deadline-value {
   font-weight: 600;
-  color: #2c5aa0;
+  color: #000000;
 }
 
 .deadline-value.urgent {
@@ -640,11 +640,11 @@
 .remaining-amount {
   font-size: 1rem;
   font-weight: 600;
-  color: #2c5aa0;
+  color: #000000;
 }
 
 .goal-description {
-  color: #666;
+  color: #000000;
   font-size: 0.9rem;
   line-height: 1.4;
   font-style: italic;
@@ -687,7 +687,7 @@
 }
 
 .modal-header h2 {
-  color: #2c5aa0;
+  color: #000000;
   margin: 0;
   font-size: 1.5rem;
 }
@@ -696,7 +696,7 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: #999;
+  color: #000000;
   cursor: pointer;
   padding: 0;
   width: 30px;
@@ -724,7 +724,7 @@
 }
 
 .current-progress p {
-  color: #2c5aa0;
+  color: #000000;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -751,7 +751,7 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #2c5aa0;
+  color: #000000;
   font-weight: 600;
 }
 
@@ -3432,6 +3432,12 @@
 .light-theme h1, .light-theme h2, .light-theme h3, .light-theme h4, .light-theme h5, .light-theme h6,
 .light-theme p, .light-theme span, .light-theme div:not(.chart-circle), .light-theme label {
   color: #000000 !important;
+}
+
+/* Light theme page title - Black color for clean light mode appearance */
+.light-theme .page-title {
+  color: #000000 !important;
+  font-weight: 700;
 }
 
 /* Light theme secondary text */
