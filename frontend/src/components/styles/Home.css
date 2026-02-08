@@ -252,10 +252,22 @@
 }
 
 .light-theme .nav-link:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.1);
+  border-color: #000000;
+  color: #000000;
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* All navigation buttons hover black in light theme */
+.light-theme .nav-link:nth-child(1):hover,
+.light-theme .nav-link:nth-child(2):hover,
+.light-theme .nav-link:nth-child(3):hover,
+.light-theme .nav-link:nth-child(4):hover,
+.light-theme .nav-link:nth-child(5):hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: #000000;
+  color: #000000;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
