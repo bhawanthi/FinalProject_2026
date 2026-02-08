@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 
 // Get all goals for a user
 const getGoals = async (req, res) => {
+  // Development mode: Return empty goals
+  if (process.env.DEV_MODE === 'true') {
+    console.log('🚀 DEV MODE: Returning empty goals');
+    return res.json([]);
+  }
+
   try {
     const userId = req.user.id;
     const { status = 'active', category, priority } = req.query;

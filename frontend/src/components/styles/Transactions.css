@@ -467,6 +467,25 @@
   box-shadow: 0 4px 12px rgba(100, 181, 246, 0.15);
 }
 
+/* Dark theme filter inputs */
+.dark-theme .filter-select,
+.dark-theme .filter-input {
+  background-color: rgba(30, 41, 59, 0.8);
+  color: #ffffff;
+  border: 2px solid rgba(55, 67, 87, 0.5);
+}
+
+.dark-theme .filter-select:focus,
+.dark-theme .filter-input:focus {
+  background-color: rgba(30, 41, 59, 0.95);
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+
+.dark-theme .filter-group label {
+  color: #ffffff;
+}
+
 /* Transactions Section */
 .transactions-section {
   background: rgba(255, 255, 255, 0.95);

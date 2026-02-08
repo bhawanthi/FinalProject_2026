@@ -5,6 +5,7 @@ const PDFDocument = require('pdfkit');
 const ExcelJS = require('exceljs');
 const path = require('path');
 const fs = require('fs');
+const mongoose = require('mongoose');
 const Transaction = require('../models/Transaction');
 const Budget = require('../models/Budget');
 const Goal = require('../models/Goal');  
@@ -44,6 +45,82 @@ router.get('/analytics', authenticateToken, async (req, res) => {
     const userId = req.user.id;
     
     console.log(`Generating analytics for user: ${userId}, period: ${dateRange}`);
+
+    // DEV MODE: Return mock data when database is not connected
+    if (process.env.DEV_MODE === 'true' && mongoose.connection.readyState !== 1) {
+      console.log('🚀 DEV MODE: Returning mock analytics data');
+      
+      return res.json({
+        summary: {
+          totalIncome: 8500.00,
+          totalExpenses: 5250.75,
+          netSavings: 3249.25,
+          savingsRate: '38.2',
+          transactionCount: 42,
+          period: dateRange
+        },
+        monthlyTrends: [
+          { month: 'Jan', income: 7500, expenses: 4200, savings: 3300 },
+          { month: 'Feb', income: 8000, expenses: 4800, savings: 3200 },
+          { month: 'Mar', income: 7800, expenses: 5100, savings: 2700 },
+          { month: 'Apr', income: 8200, expenses: 4900, savings: 3300 },
+          { month: 'May', income: 8500, expenses: 5000, savings: 3500 },
+          { month: 'Jun', income: 8500, expenses: 5250.75, savings: 3249.25 }
+        ],
+        categoryBreakdown: [
+          { category: 'Food & Dining', name: 'Food & Dining', amount: 1250.50, percentage: 23.8, color: '#ef4444' },
+          { category: 'Transportation', name: 'Transportation', amount: 850.25, percentage: 16.2, color: '#3b82f6' },
+          { category: 'Shopping', name: 'Shopping', amount: 720.00, percentage: 13.7, color: '#10b981' },
+          { category: 'Entertainment', name: 'Entertainment', amount: 580.00, percentage: 11.0, color: '#f59e0b' },
+          { category: 'Utilities', name: 'Utilities', amount: 450.00, percentage: 8.6, color: '#8b5cf6' },
+          { category: 'Healthcare', name: 'Healthcare', amount: 380.00, percentage: 7.2, color: '#06b6d4' },
+          { category: 'Other', name: 'Other', amount: 1020.00, percentage: 19.5, color: '#ec4899' }
+        ],
+        budgetPerformance: [
+          { category: 'Food & Dining', budgeted: 1500, spent: 1250.50, remaining: 249.50, percentage: 83.4, status: 'under' },
+          { category: 'Transportation', budgeted: 800, spent: 850.25, remaining: -50.25, percentage: 106.3, status: 'over' },
+          { category: 'Shopping', budgeted: 1000, spent: 720.00, remaining: 280.00, percentage: 72.0, status: 'under' },
+          { category: 'Entertainment', budgeted: 500, spent: 580.00, remaining: -80.00, percentage: 116.0, status: 'over' },
+          { category: 'Utilities', budgeted: 500, spent: 450.00, remaining: 50.00, percentage: 90.0, status: 'under' }
+        ],
+        insights: [
+          {
+            type: 'positive',
+            title: 'Excellent Savings Rate! 🎉',
+            description: "You're saving 38.2% of your income, which exceeds the recommended 20%. Keep up the great work!",
+            icon: '💰',
+            priority: 'high'
+          },
+          {
+            type: 'warning',
+            title: '2 Budget(s) Exceeded 📈',
+            description: "You're over budget by $130.25 across 2 categories.",
+            icon: '💸',
+            priority: 'high'
+          },
+          {
+            type: 'info',
+            title: 'Top Expense: Food & Dining',
+            description: 'Food & Dining accounts for 23.8% of your total expenses ($1,250.50).',
+            icon: '🍽️',
+            priority: 'medium'
+          },
+          {
+            type: 'info',
+            title: 'Active Financial Life 📱',
+            description: 'You have 42 transactions this period. Your financial activity is well documented!',
+            icon: '📊',
+            priority: 'low'
+          }
+        ],
+        metadata: {
+          generatedAt: new Date().toISOString(),
+          userId: userId,
+          userName: 'Demo User',
+          period: dateRange
+        }
+      });
+    }
 
     // Calculate date range
     const endDate = new Date();
@@ -512,43 +589,77 @@ router.get('/pdf', authenticateToken, async (req, res) => {
     const { period = '30d' } = req.query;
     const userId = req.user.id;
     
-    // Get data for the specified period
-    const endDate = new Date();
-    const startDate = new Date();
+    // DEV MODE: Use mock data when database is not connected
+    let transactions = [];
+    let budgets = [];
+    let user = { name: 'Demo User', email: 'demo@example.com' };
     
-    switch (period) {
-      case '7d':
-        startDate.setDate(endDate.getDate() - 7);
-        break;
-      case '30d':
-        startDate.setDate(endDate.getDate() - 30);
-        break;
-      case '90d':
-        startDate.setDate(endDate.getDate() - 90);
-        break;
-      case '12m':
-        startDate.setFullYear(endDate.getFullYear() - 1);
-        break;
-      default:
-        startDate.setDate(endDate.getDate() - 30);
-    }
+    if (process.env.DEV_MODE === 'true' && mongoose.connection.readyState !== 1) {
+      console.log('🚀 DEV MODE: Using mock data for PDF generation');
+      
+      // Mock transactions
+      transactions = [
+        { type: 'income', amount: 3500, category: 'Salary', date: new Date('2026-02-01'), description: 'Monthly Salary' },
+        { type: 'expense', amount: 850.25, category: 'Transportation', date: new Date('2026-02-05'), description: 'Gas and maintenance' },
+        { type: 'expense', amount: 1250.50, category: 'Food & Dining', date: new Date('2026-02-10'), description: 'Groceries and restaurants' },
+        { type: 'expense', amount: 720, category: 'Shopping', date: new Date('2026-02-12'), description: 'Clothes and essentials' },
+        { type: 'income', amount: 500, category: 'Freelance', date: new Date('2026-02-15'), description: 'Freelance project' }
+      ];
+      
+      // Mock budgets
+      budgets = [
+        { 
+          name: 'Monthly Budget',
+          categories: [
+            { category: 'Food & Dining', budgetedAmount: 1500 },
+            { category: 'Transportation', budgetedAmount: 800 },
+            { category: 'Shopping', budgetedAmount: 1000 }
+          ]
+        }
+      ];
+    } else {
+      // Get data for the specified period
+      const endDate = new Date();
+      const startDate = new Date();
+      
+      switch (period) {
+        case '7d':
+          startDate.setDate(endDate.getDate() - 7);
+          break;
+        case '30d':
+          startDate.setDate(endDate.getDate() - 30);
+          break;
+        case '90d':
+          startDate.setDate(endDate.getDate() - 90);
+          break;
+        case '12m':
+          startDate.setFullYear(endDate.getFullYear() - 1);
+          break;
+        default:
+          startDate.setDate(endDate.getDate() - 30);
+      }
 
-    console.log('Fetching data for PDF generation...');
-    const [transactions, budgets, user] = await Promise.all([
-      Transaction.find({ 
-        userId: userId,
-        date: { $gte: startDate, $lte: endDate }
-      }).sort({ date: -1 }),
-      Budget.find({ userId: userId }),
-      User.findById(userId)
-    ]);
+      console.log('Fetching data for PDF generation...');
+      const results = await Promise.all([
+        Transaction.find({ 
+          userId: userId,
+          date: { $gte: startDate, $lte: endDate }
+        }).sort({ date: -1 }),
+        Budget.find({ userId: userId }),
+        User.findById(userId)
+      ]);
+      
+      transactions = results[0];
+      budgets = results[1];
+      user = results[2];
 
-    console.log(`Found ${transactions.length} transactions, ${budgets.length} budgets for PDF`);
+      console.log(`Found ${transactions.length} transactions, ${budgets.length} budgets for PDF`);
 
-    // Validate user exists
-    if (!user) {
-      console.error('User not found for PDF generation');
-      return res.status(404).json({ message: 'User not found' });
+      // Validate user exists
+      if (!user) {
+        console.error('User not found for PDF generation');
+        return res.status(404).json({ message: 'User not found' });
+      }
     }
 
     const totalIncome = transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + (t.amount || 0), 0);
@@ -837,36 +948,82 @@ router.get('/excel', authenticateToken, async (req, res) => {
     const dateRange = period;
     const userId = req.user.id;
     
-    // Get data for the specified period
-    const endDate = new Date();
-    const startDate = new Date();
+    // DEV MODE: Use mock data when database is not connected
+    let transactions = [];
+    let budgets = [];
+    let goals = [];
+    let user = { name: 'Demo User', email: 'demo@example.com' };
     
-    switch (period) {
-      case '7d':
-        startDate.setDate(endDate.getDate() - 7);
-        break;
-      case '30d':
-        startDate.setDate(endDate.getDate() - 30);
-        break;
-      case '90d':
-        startDate.setDate(endDate.getDate() - 90);
-        break;
-      case '12m':
-        startDate.setFullYear(endDate.getFullYear() - 1);
-        break;
-      default:
-        startDate.setDate(endDate.getDate() - 30);
-    }
+    if (process.env.DEV_MODE === 'true' && mongoose.connection.readyState !== 1) {
+      console.log('🚀 DEV MODE: Using mock data for Excel generation');
+      
+      // Mock transactions
+      transactions = [
+        { type: 'income', amount: 3500, category: 'Salary', date: new Date('2026-02-01'), description: 'Monthly Salary' },
+        { type: 'income', amount: 500, category: 'Freelance', date: new Date('2026-02-15'), description: 'Freelance project' },
+        { type: 'expense', amount: 850.25, category: 'Transportation', date: new Date('2026-02-05'), description: 'Gas and maintenance' },
+        { type: 'expense', amount: 1250.50, category: 'Food & Dining', date: new Date('2026-02-10'), description: 'Groceries and restaurants' },
+        { type: 'expense', amount: 720, category: 'Shopping', date: new Date('2026-02-12'), description: 'Clothes and essentials' },
+        { type: 'expense', amount: 580, category: 'Entertainment', date: new Date('2026-02-14'), description: 'Movies and games' },
+        { type: 'expense', amount: 450, category: 'Utilities', date: new Date('2026-02-03'), description: 'Electricity and water' }
+      ];
+      
+      // Mock budgets
+      budgets = [
+        { 
+          name: 'Monthly Budget',
+          categories: [
+            { category: 'Food & Dining', budgetedAmount: 1500 },
+            { category: 'Transportation', budgetedAmount: 800 },
+            { category: 'Shopping', budgetedAmount: 1000 },
+            { category: 'Entertainment', budgetedAmount: 500 },
+            { category: 'Utilities', budgetedAmount: 500 }
+          ]
+        }
+      ];
+      
+      // Mock goals
+      goals = [
+        { name: 'Emergency Fund', targetAmount: 10000, currentAmount: 5000, targetDate: new Date('2026-12-31') },
+        { name: 'Vacation', targetAmount: 3000, currentAmount: 1200, targetDate: new Date('2026-07-01') }
+      ];
+    } else {
+      // Get data for the specified period
+      const endDate = new Date();
+      const startDate = new Date();
+      
+      switch (period) {
+        case '7d':
+          startDate.setDate(endDate.getDate() - 7);
+          break;
+        case '30d':
+          startDate.setDate(endDate.getDate() - 30);
+          break;
+        case '90d':
+          startDate.setDate(endDate.getDate() - 90);
+          break;
+        case '12m':
+          startDate.setFullYear(endDate.getFullYear() - 1);
+          break;
+        default:
+          startDate.setDate(endDate.getDate() - 30);
+      }
 
-    const [transactions, budgets, goals, user] = await Promise.all([
-      Transaction.find({ 
-        userId: userId,
-        date: { $gte: startDate, $lte: endDate }
-      }).sort({ date: -1 }),
-      Budget.find({ userId: userId }),
-      Goal.find({ userId: userId }),
-      User.findById(userId)
-    ]);
+      const results = await Promise.all([
+        Transaction.find({ 
+          userId: userId,
+          date: { $gte: startDate, $lte: endDate }
+        }).sort({ date: -1 }),
+        Budget.find({ userId: userId }),
+        Goal.find({ userId: userId }),
+        User.findById(userId)
+      ]);
+      
+      transactions = results[0];
+      budgets = results[1];
+      goals = results[2];
+      user = results[3];
+    }
 
     const totalIncome = transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0);
     const totalExpenses = transactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0);

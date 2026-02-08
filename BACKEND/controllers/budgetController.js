@@ -4,6 +4,12 @@ const mongoose = require('mongoose');
 
 // Get all budgets for a user
 const getBudgets = async (req, res) => {
+  // Development mode: Return empty budgets
+  if (process.env.DEV_MODE === 'true') {
+    console.log('🚀 DEV MODE: Returning empty budgets');
+    return res.json([]);
+  }
+
   try {
     const userId = req.user.id;
     const { status = 'active', period } = req.query;

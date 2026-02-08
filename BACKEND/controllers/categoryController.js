@@ -2,6 +2,19 @@ const Category = require('../models/Category');
 
 // Get all categories
 const getCategories = async (req, res) => {
+  // Development mode: Return default categories
+  if (process.env.DEV_MODE === 'true') {
+    console.log('🚀 DEV MODE: Returning default categories');
+    const defaultCategories = [
+      { _id: '1', name: 'Salary', type: 'income', icon: '💼', color: '#4CAF50', isActive: true },
+      { _id: '2', name: 'Food', type: 'expense', icon: '🍔', color: '#FF5722', isActive: true },
+      { _id: '3', name: 'Transportation', type: 'expense', icon: '🚗', color: '#2196F3', isActive: true },
+      { _id: '4', name: 'Entertainment', type: 'expense', icon: '🎬', color: '#9C27B0', isActive: true },
+      { _id: '5', name: 'Shopping', type: 'expense', icon: '🛍️', color: '#FF9800', isActive: true }
+    ];
+    return res.json(defaultCategories);
+  }
+
   try {
     const { type } = req.query;
     

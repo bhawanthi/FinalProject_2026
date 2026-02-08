@@ -4,6 +4,17 @@ const mongoose = require('mongoose');
 
 // Get all transactions for a user
 const getTransactions = async (req, res) => {
+  // Development mode: Return empty transactions
+  if (process.env.DEV_MODE === 'true') {
+    console.log('🚀 DEV MODE: Returning empty transactions');
+    return res.json({
+      transactions: [],
+      totalPages: 0,
+      currentPage: 1,
+      totalTransactions: 0
+    });
+  }
+
   try {
     const { page = 1, limit = 10, type, category, startDate, endDate } = req.query;
     const userId = req.user.id;
@@ -164,6 +175,17 @@ const deleteTransaction = async (req, res) => {
 
 // Get transaction statistics
 const getTransactionStats = async (req, res) => {
+  // Development mode: Return mock stats
+  if (process.env.DEV_MODE === 'true') {
+    console.log('🚀 DEV MODE: Returning mock transaction stats');
+    return res.json({
+      totals: [],
+      categoryBreakdown: [],
+      monthlyTrend: [],
+      period: req.query.period || 'monthly'
+    });
+  }
+
   try {
     const userId = req.user.id;
     const { period = 'monthly' } = req.query;

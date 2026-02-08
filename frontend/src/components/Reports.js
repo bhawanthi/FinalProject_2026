@@ -69,7 +69,7 @@ const Reports = () => {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch(`http://localhost:5000/api/reports/analytics?period=${dateRange}`, {
+      const response = await fetch(`http://localhost:5000/api/reports/analytics?dateRange=${dateRange}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -121,6 +121,17 @@ const Reports = () => {
       });
 
       if (!response.ok) {
+        // Check if response is JSON (error message)
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await response.json();
+          if (response.status === 503) {
+            alert('📊 PDF Export Unavailable\n\n' + (errorData.message || 'Database connection required') + '\n\nNote: You can view the analytics data on screen. PDF export requires a database connection.');
+          } else {
+            alert(`Error: ${errorData.message || errorData.error || 'PDF generation failed'}`);
+          }
+          return;
+        }
         throw new Error(`PDF generation failed: ${response.status} ${response.statusText}`);
       }
 
@@ -163,6 +174,18 @@ const Reports = () => {
       });
 
       if (!response.ok) {
+        // Check if response is JSON (error message)
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await response.json();
+          if (response.status === 503) {
+            alert('📊 Excel Export Unavailable\n\n' + (errorData.message || 'Database connection required') + '\n\nNote: You can view the analytics data on screen. Excel export requires a database connection.');
+          } else {
+            alert(`Error: ${errorData.message || errorData.error || 'Excel generation failed'}`);
+          }
+          setLoading(false);
+          return;
+        }
         throw new Error(`Excel generation failed: ${response.status} ${response.statusText}`);
       }
 

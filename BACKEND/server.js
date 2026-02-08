@@ -32,6 +32,14 @@ app.use((req, res, next) => {
     return next();
   }
 
+  // Development mode: Allow requests without database
+  if (process.env.DEV_MODE === 'true') {
+    if (mongoose.connection.readyState !== 1) {
+      console.warn(`⚠️ DEV MODE: Database not connected but allowing requests (state: ${mongoose.connection.readyState})`);
+    }
+    return next();
+  }
+
   // Block all requests if DB not connected, but provide helpful message
   if (mongoose.connection.readyState !== 1) {
     console.warn(`⚠️ Request blocked - DB not connected (state: ${mongoose.connection.readyState})`);

@@ -16,6 +16,12 @@ exports.register = async (req, res) => {
     return res.status(400).json({ msg: 'Passwords do not match' });
   }
   
+  // Development mode: Mock registration without database
+  if (process.env.DEV_MODE === 'true') {
+    console.log('🚀 DEV MODE: Mock user registration successful');
+    return res.status(201).json({ msg: 'User registered successfully (dev mode)' });
+  }
+  
   try {
     let user = await User.findOne({ email });
     if (user) {
@@ -54,6 +60,25 @@ exports.login = async (req, res) => {
   if (!usernameOrEmail || !password) {
     console.log('Missing login fields');
     return res.status(400).json({ msg: 'All fields are required' });
+  }
+  
+  // Development mode: Mock login without database
+  if (process.env.DEV_MODE === 'true') {
+    console.log('🚀 DEV MODE: Using mock authentication');
+    const token = jwt.sign({ id: 'dev_user_123' }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    
+    return res.json({ 
+      token, 
+      user: { 
+        id: 'dev_user_123', 
+        name: 'Development User', 
+        email: usernameOrEmail,
+        age: 25,
+        jobRole: 'Developer',
+        monthlySalary: 50000,
+        currency: 'USD'
+      } 
+    });
   }
   
   try {
